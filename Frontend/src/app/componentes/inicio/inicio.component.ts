@@ -8,3 +8,12 @@ import { Component } from '@angular/core';
 export class InicioComponent {
 
 }
+function login() {
+  // Lógica para el inicio de sesión
+  alert('¡Login ejecutado!');
+}
+
+function registro() {
+  // Lógica para el registro
+  alert('¡Registro ejecutado!');
+}

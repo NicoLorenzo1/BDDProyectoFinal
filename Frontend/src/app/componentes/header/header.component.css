@@ -1,38 +1,45 @@
 .containerHeader {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    
-    margin: 0; /* Añadir esto para eliminar el margen predeterminado */
-    padding: 0; /* Añadir esto para eliminar el relleno predeterminado */
-    margin-bottom: 30px;
+    /*justify-content: space-between;*/
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    padding: 10px; /* Añade un poco de espacio alrededor de los elementos */
+    max-height: 70px;
 }
 
-.menu {
-    display: flex;
+.home {
+    flex: 1; /* Distribuye el espacio disponible de manera uniforme entre los elementos */
     justify-content: flex-start;
-    padding: 5px;
 }
 
-.menu button {
-    margin-right: 5px; /* Agrega un margen derecho de 10px a todos los botones */
+.btnHome{
+    background-color: rgb(255, 254, 253);
+    padding: 10px;
+    color: #050000;
+    border-radius: 4px;
+    border: solid 1px black;
+    cursor: pointer;
 }
 
-.menu button:last-child {
-    margin-right: 0; /* Elimina el margen derecho del último botón */
+.title {
+    flex: 1; /* Distribuye el espacio disponible de manera uniforme entre los elementos */
+    text-align: center; /* Centra el texto en el contenedor */
+}
+.tituloPrincipal{
+    color:rgb(3, 69, 126)
 }
 
-
-.loger {
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
+.logo {
+    flex: 1; /* Distribuye el espacio disponible de manera uniforme entre los elementos */
+    display: flex; /* Agregado display: flex */
+    justify-content: flex-end; /* Justifica el contenido hacia la derecha */
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
 }
 
-.loger button {
-    margin: auto;
-    margin-right: 5px; /* Agrega un margen derecho de 10px a todos los botones */
+.logo img {
+    max-width: 60%;
+    height: auto;
 }
-.loger button:last-child {
-    margin-right: 0; /* Elimina el margen derecho del último botón */
+
+.homeButton {
+    max-width: 100vp;
 }

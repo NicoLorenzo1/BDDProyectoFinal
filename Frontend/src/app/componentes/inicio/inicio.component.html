@@ -1,9 +1,23 @@
 <app-header></app-header>
 
 <div class="container">
-    <div class="Inicio">
-        <h1>Bienvenidos!!</h1>
-        <button class="btn btn-danger" [routerLink]="['/salasadmin']"  >Llenar formulario</button>
+    <div class="inicio">
+        <div class="tarjeta-login">
+            <div class="campo">
+                <label for="cedula">Cédula:</label>
+                <input type="text" id="cedula" name="cedula" required>
+            </div>
+    
+            <div class="campo">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
+            
+            <div class="botonesLogin">
+                <button class="boton" onclick="login()">Iniciar sesión</button>
+                <button class="boton boton-registro" onclick="registro()">Registrarse</button>
+            </div>
+        </div>
     </div>
 </div>
 
