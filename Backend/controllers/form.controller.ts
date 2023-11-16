@@ -4,7 +4,7 @@ import Form from '../models/form';
 import { IForm } from '../interfaces/form.interface';
 import { ErrorCodes } from '../helpers/error-codes';
 
-export const getForms = async (req: Request, res: Response) => {
+export const getForm = async (req: Request, res: Response) => {
     try {
         const forms = await Form.findAll({
             where: {

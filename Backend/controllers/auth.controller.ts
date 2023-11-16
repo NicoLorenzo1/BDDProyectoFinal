@@ -1,22 +1,93 @@
 import { Response, Request } from "express";
 import User from "../models/user";
-import login from "../models/login"
+import Login from "../models/login"
 import bcryptjs from 'bcryptjs';
 import { ErrorCodes } from '../helpers/error-codes';
 
-export const getUserId = async (req: Request, res: Response) => {
+//devuelve la informacion de la tabla logins. Busca por el logId
+export const getUserData = async (req: Request, res: Response) => {
     console.log("prueba de llegada");
 
     try {
-      const loginsInfo = await login.findAll(); // Esto devuelve todos los registros de la tabla Logins
-  
-      res.json(loginsInfo);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({
-        msg: 'Internal Server Error',
-      });
-    }
-  };
+        const loginData = await Login.findAll({
+            where: {
+                logId: "1"
+            }
+        });
 
-export default getUserId;
+        res.json(loginData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Internal Server Error',
+        });
+    }
+};
+
+//crea un usuario con un identificador y una contraseña encriptada
+export const postUser = async (req: Request, res: Response) => {
+
+    const { body } = req;
+
+    try {
+        const user = User.build(body);
+
+        //Encrypt password
+        const salt = bcryptjs.genSaltSync();
+        user.password = bcryptjs.hashSync(body.password, salt);
+        await user.save();
+        res.json(user);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+};
+
+//logueo de un usario verifica contraseña y usuario correcto
+export const login = async (req: Request, res: Response) => {
+
+    const { ci, password } = req.body;
+    console.log("llego a login!############################# " + ci + password);
+    try {
+        //busco usuario por cedula
+        const user = await User.findOne({
+            where: {
+                ci: ci,
+            },
+        });
+
+        //no encuentra el usuario
+        if (!user) {
+            return res.status(401).json({
+                msg: 'Ci are not correct '
+            });
+        }
+        //busco logId del usuario que encontró
+        const data = await Login.findOne({
+            where: {
+                logId: user.logId
+            }
+        });
+        if (!data) {
+            return res.status(401)
+        }
+        //Busco password del usuario asociado con ese logId
+        const dataPassword = data.getDataValue('password');
+
+        const validPassword = bcryptjs.compareSync(dataPassword, password);
+        if (!validPassword) {
+            return res.status(401).json({
+                msg: 'Password are not correct - password'
+            });
+        }
+        else {
+            console.log("logueado correctamente!!################################");
+        }
+    }
+
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+}

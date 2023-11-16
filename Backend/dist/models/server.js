@@ -40,6 +40,7 @@ class Server {
     }
     middlewares() {
         this.app.use((0, cors_1.default)());
+        this.app.use(express_1.default.json());
     }
     routes() {
         this.app.use(this.authPath.auth, auth_routes_1.default);

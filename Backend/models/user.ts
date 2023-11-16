@@ -7,29 +7,43 @@ class User extends Model {
 }
 
 User.init({
-    logId: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
     ci: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        primaryKey: true
     },
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'Nombre'
     },
     surname: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'Apellido'
+    },
+    birthdate: {
+        type: DataTypes.DATE,
+        field: 'Fch_Nacimiento'
+    },
+    adress: {
+        type: DataTypes.STRING,
+        field: 'Direccion'
+    },
+    contact: {
+        type: DataTypes.INTEGER,
+        field: 'Teléfono'
     },
     email: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        field: 'Email'
     },
-    password: {
-        type: DataTypes.STRING
+    logId: {
+        type: DataTypes.INTEGER,
+        field: 'LogId'
     }
 }, {
     sequelize: db,
-    modelName: 'User'
+    modelName: 'User',
+    tableName: 'Funcionarios',
+    timestamps: false
 });
 
 
