@@ -3,7 +3,8 @@ import db from "../db/config";
 import sequelize from "sequelize/types/sequelize";
 
 class Login extends Model {
-
+    logId!: number;
+    declare password: string;
 }
 
 Login.init(
@@ -15,7 +16,6 @@ Login.init(
         password: {
             type: DataTypes.STRING,
         },
-        // Otras columnas...
     },
     {
         sequelize: db,

@@ -92,16 +92,15 @@ export const login = async (req: Request, res: Response) => {
             return res.status(401)
         }
         //Busco password del usuario asociado con ese logId
-        const dataPassword = data.getDataValue('password');
 
-        const validPassword = bcryptjs.compareSync(dataPassword, password);
+        const validPassword = bcryptjs.compareSync(password, data.password);
         if (!validPassword) {
             return res.status(401).json({
-                msg: 'Password are not correct - password'
+                msg: 'Password are not correct'
             });
         }
         else {
-            console.log("logueado correctamente!!################################");
+            console.log("logueado correctamente!!################################ " + password + "####" + data.password);
         }
     }
 
