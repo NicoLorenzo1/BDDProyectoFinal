@@ -1,13 +1,26 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import db from "../db/config";
+import sequelize from "sequelize/types/sequelize";
 
-const Login = db.define('Login', {
-    logId: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+class Login extends Model {
+    logId!: number;
+    declare password: string;
+}
+
+Login.init(
+    {
+        logId: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+        },
+        password: {
+            type: DataTypes.STRING,
+        },
     },
-    password: {
-        type: DataTypes.STRING
-    }
-});
+    {
+        sequelize: db,
+        timestamps: false
+    },
+);
+
+export default Login;
