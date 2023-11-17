@@ -11,7 +11,7 @@ export const getUserData = async (req: Request, res: Response) => {
     try {
         const loginData = await Login.findAll({
             where: {
-                logId: "1"
+                
             }
         });
 
@@ -25,7 +25,7 @@ export const getUserData = async (req: Request, res: Response) => {
 };
 
 //crea un usuario con un identificador y una contraseña encriptada
-export const postUser = async (req: Request, res: Response) => {
+export const registerUser = async (req: Request, res: Response) => {
 
     const { body } = req;
 
@@ -36,7 +36,12 @@ export const postUser = async (req: Request, res: Response) => {
         const salt = bcryptjs.genSaltSync();
         user.password = bcryptjs.hashSync(body.password, salt);
         await user.save();
-        res.json(user);
+
+        // Guardar en la tabla Logins
+        const login = await Login.create({
+            password: user.password,
+        });
+        res.json({ user, login });
 
     } catch (error) {
         console.error(error);
