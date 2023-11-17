@@ -1,0 +1,25 @@
+<!-- calendar.component.html -->
+
+<div class="calendar-container">
+    <h2>Calendario</h2>
+
+    <div class="navigation">
+        <button (click)="prevYear()">Año Anterior</button>
+        <button (click)="prevMonth()">Mes Anterior</button>
+        <p>{{ currentDate | dynamicDate }}</p>
+        <button (click)="nextMonth()">Mes Siguiente</button>
+        <button (click)="nextYear()">Año Siguiente</button>
+    </div>
+
+    <div class="days">
+        <div *ngFor="let day of daysInMonth" class="day" [class.selected]="day === selectedDay"
+            (click)="selectDay(day)">
+            {{ day }}
+        </div>
+    </div>
+
+    <div *ngIf="selectedDay !== null">
+        <p>Has seleccionado el día {{ selectedDay }}</p>
+        <!-- Aquí podrías agregar más lógica para guardar en la base de datos -->
+    </div>
+</div>
