@@ -29,8 +29,9 @@ const Form = db.define('Form', {
     },
     contact: {
         type: DataTypes.INTEGER
-    }
-
+    },
+    //Se define la tabla a donde se deben insertar los datos en la bdd
+    tableName: 'formulario'
 });
 
 export default Form;

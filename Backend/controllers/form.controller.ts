@@ -18,3 +18,21 @@ export const getForm = async (req: Request, res: Response) => {
     }
 }
 
+//postea un formulario 
+export const postForm = async (req: Request, res: Response) => {
+
+    const { body } = req;
+
+    try {
+        // Guardar en la tabla Formulario           
+        const form = await Form.create(body)
+        res.json({ form });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+};
+    
+
+

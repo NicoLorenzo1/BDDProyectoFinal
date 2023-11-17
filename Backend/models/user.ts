@@ -4,6 +4,8 @@ import db from "../db/config";
 class User extends Model {
     declare password: string;
     declare logId: number;
+    declare ci: number;
+
 }
 
 User.init({

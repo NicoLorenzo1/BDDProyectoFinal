@@ -11,7 +11,7 @@ export const getUserData = async (req: Request, res: Response) => {
     try {
         const loginData = await Login.findAll({
             where: {
-                
+
             }
         });
 
@@ -32,16 +32,31 @@ export const registerUser = async (req: Request, res: Response) => {
     try {
         const user = User.build(body);
 
-        //Encrypt password
-        const salt = bcryptjs.genSaltSync();
-        user.password = bcryptjs.hashSync(body.password, salt);
-        await user.save();
-
-        // Guardar en la tabla Logins
-        const login = await Login.create({
-            password: user.password,
+        const userExists = await User.findOne({
+            where: {
+                ci: user.ci,
+            },
         });
-        res.json({ user, login });
+
+        //no encuentra el usuario
+
+        if (!userExists) {
+            //Encrypt password
+            const salt = bcryptjs.genSaltSync();
+            user.password = bcryptjs.hashSync(body.password, salt);
+            await user.save();
+
+            // Guardar en la tabla Logins
+            const login = await Login.create({
+                password: user.password,
+            });
+            res.json({ user, login });
+        }
+        else {
+            return res.status(401).json({
+                msg: 'User registered '
+            });
+        }
 
     } catch (error) {
         console.error(error);
@@ -53,7 +68,6 @@ export const registerUser = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
 
     const { ci, password } = req.body;
-    console.log("llego a login!############################# " + ci + password);
     try {
         //busco usuario por cedula
         const user = await User.findOne({
