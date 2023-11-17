@@ -14,11 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const config_1 = __importDefault(require("../db/config"));
+const cors_1 = __importDefault(require("cors"));
+const auth_routes_1 = __importDefault(require("../routes/auth.routes"));
 class Server {
     constructor() {
+        this.authPath = {
+            auth: '/api/auth'
+        };
         this.app = (0, express_1.default)();
         this.port = process.env.SERVER_PORT || 3307;
+        this.middlewares();
         this.dbConnection();
+        this.routes();
     }
     dbConnection() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -30,6 +37,13 @@ class Server {
                 console.log(error);
             }
         });
+    }
+    middlewares() {
+        this.app.use((0, cors_1.default)());
+        this.app.use(express_1.default.json());
+    }
+    routes() {
+        this.app.use(this.authPath.auth, auth_routes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
