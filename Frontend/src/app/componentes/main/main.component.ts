@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ControladorCarnetSalud } from 'src/app/services/controlador-CarnetSalud';
+import { generalController } from 'src/app/services/generalController';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +7,7 @@ import { ControladorCarnetSalud } from 'src/app/services/controlador-CarnetSalud
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  constructor(private controlador:ControladorCarnetSalud){}
+  constructor(private controlador:generalController){}
 
 result:string = 'Tenes Carnet al día';
 }

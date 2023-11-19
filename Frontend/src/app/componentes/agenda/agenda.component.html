@@ -23,10 +23,10 @@
     </div>
     <br>
     <div class="mb-3 d-flex justify-content-between">
-        <a [routerLink]="['/inicio']" class="ml-auto">
+        <a [routerLink]="['/main']" class="ml-auto">
             <i class="fa-solid fa-arrow-left-long icon-rojo" style="font-size: 2rem;"></i>
         </a>
-        <a class="ml-auto" (click)="isFechaSeleccionada() ? guardarFecha() : null">
+        <a class="ml-auto" (click)="isFechaSeleccionada() ? guardarFecha() : null" [routerLink]="['/main']">
             <i [ngClass]="isFechaSeleccionada() ? 'fa-solid fa-check icon-green' : 'fa-solid fa-check icon-gray'" style="font-size: 2rem;"></i>
         </a>
     </div>
