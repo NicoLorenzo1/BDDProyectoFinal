@@ -9,10 +9,6 @@ class User extends Model {
 }
 
 User.init({
-    ci: {
-        type: DataTypes.INTEGER,
-        primaryKey: true
-    },
     name: {
         type: DataTypes.STRING,
         field: 'Nombre'
@@ -21,15 +17,19 @@ User.init({
         type: DataTypes.STRING,
         field: 'Apellido'
     },
+    ci: {
+        type: DataTypes.INTEGER,
+        primaryKey: true
+    },
     birthdate: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         field: 'Fch_Nacimiento'
     },
     adress: {
         type: DataTypes.STRING,
         field: 'Direccion'
     },
-    contact: {
+    phone: {
         type: DataTypes.INTEGER,
         field: 'Teléfono'
     },

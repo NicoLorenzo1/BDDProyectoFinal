@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { generalController } from 'src/app/services/generalController';
+import { Router } from '@angular/router';
+import { Login } from 'src/app/models/login';
 
 @Component({
   selector: 'app-inicio',
@@ -7,49 +10,35 @@ import { generalController } from 'src/app/services/generalController';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent {
-constructor(private controlador:generalController){}
 
-/*
-login(logid: number, contrasenia: string) {
-  let logok = this.controlador.login(logid,contrasenia)
-  if(logok){
-    alert("Login ejecutado correctamente")
+  formLogin: FormGroup;
+
+
+  constructor(private controlador: generalController, private fb: FormBuilder, private router: Router) {
+    this.formLogin = this.fb.group({
+      ci: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
-  else{
-    alert("Credenciales incorrectas")
+
+  login() {
+    const FORM: Login = {
+      ci: this.formLogin.get('ci')?.value,
+      password: this.formLogin.get('password')?.value,
+    }
+
+    this.controlador.login(FORM.ci, FORM.password).subscribe({
+      next: (data) => {
+        // Manejar la respuesta aquí
+        alert('Login: ' + JSON.stringify(data));
+        this.router.navigate(['/main']);
+      },
+      error: (error) => {
+        alert("Datos incorrectos!!");
+        console.error(error);
+        // Manejar errores si es necesario
+      }
+    });
   }
-}
-
-registro() {
-  // Lógica para el registro
-  alert('¡Registro ejecutado!');
-}
-*/
-
-login() {
-  this.controlador.login(54332612, "123456").subscribe({
-    next: (data) => {
-      // Manejar la respuesta aquí
-      alert('Login: ' + JSON.stringify(data));
-    },
-    error: (error) => {
-      console.error(error);
-      // Manejar errores si es necesario
-    }
-  });
-}
-
-register() {
-  this.controlador.Register(543, "nico", "lorenzo", new Date('1990-01-15'), "8 de octubre", 9225, "lorenzo@gmail", "123456").subscribe({
-    next: (data) => {
-      // Manejar la respuesta aquí
-      alert('Register: ' + JSON.stringify(data));
-    },
-    error: (error) => {
-      console.error(error);
-      // Manejar errores si es necesario
-    }
-  });
-}
 
 }

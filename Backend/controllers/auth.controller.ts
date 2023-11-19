@@ -68,6 +68,8 @@ export const registerUser = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
 
     const { ci, password } = req.body;
+    console.log("llego login #########################################" + ci + password);
+
     try {
         //busco usuario por cedula
         const user = await User.findOne({
@@ -78,12 +80,16 @@ export const login = async (req: Request, res: Response) => {
 
         //no encuentra el usuario
         if (!user) {
+
             return res.status(401).json({
                 msg: 'Ci are not correct '
             });
+
         }
         //busco logId del usuario que encontró
+
         const data = await Login.findOne({
+
             where: {
                 logId: user.logId
             }
