@@ -3,18 +3,29 @@
 <div class="container">
     <div class="inicio">
         <div class="tarjeta-login">
-            <div class="campo">
-                <label for="logid">LogID:</label>
-                <input type="text" id="logid" name="logid" required>
-            </div>
 
-            <div class="campo">
-                <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
-            </div>
+            <form class="mt-5" [formGroup]="formLogin" (ngSubmit)="login()">
 
+                <div class="mb-3">
+                    <input type="text" formControlName="ci" class="form-control form-control-lg" placeholder="CI">
+                    <div class="text-danger"
+                        *ngIf="formLogin.get('ci')?.hasError('required') && formLogin.get('ci')?.touched">
+                        <span>CI <strong>is required</strong></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" formControlName="password" class="form-control form-control-lg"
+                        placeholder="Password">
+                    <div class="text-danger"
+                        *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">
+                        <span>Password <strong>is required</strong></span>
+                    </div>
+                </div>
+
+            </form>
             <div class="botonesLogin">
-                <button class="boton" (click)="login()" [routerLink]="['/main']">Iniciar sesión</button>
+                <button class="boton" (click)="login()">Iniciar sesión</button>
                 <button class="boton boton-registro" [routerLink]="['/registro']">Registrarse</button>
                 <button class="boton boton-registro" [routerLink]="['/main']">Main</button>
                 <button class="boton boton-registro" [routerLink]="['/list']">Lista</button>

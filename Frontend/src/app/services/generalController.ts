@@ -36,8 +36,6 @@ export class generalController {
   //loguea al usuario 
   login(ci: number, password: string) {
     const body = { ci, password };
-    console.log("llego a service!############################# " + ci + password);
-
     return this.http.post<any>(this.apiUrl + '/login', body);
   }
 
