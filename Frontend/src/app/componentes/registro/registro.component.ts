@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Register } from '../../models/register';
 import { RegisterService } from '../../services/register.service';
 
@@ -19,16 +18,15 @@ export class RegistroComponent implements OnInit{
 
     constructor(private fb: FormBuilder,
         private router: Router,
-        private toastr: ToastrService,
         private _registerService: RegisterService,
         private aRouter: ActivatedRoute) {
         this.formRegister = this.fb.group({
             name: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
+            email: ['', [Validators.required, Validators.pattern(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPass: ['', [Validators.required, Validators.minLength(6)]],
-        });
+            confirmPass: ['', [Validators.required, Validators.minLength(6)]], }, { validators: this.passwordConfirmationValidator });
+
         this.id = this.aRouter.snapshot.paramMap.get('id');
 
         this.formRegister.valueChanges.subscribe(() => {
@@ -38,6 +36,17 @@ export class RegistroComponent implements OnInit{
     }
 
     ngOnInit(): void {}
+
+    passwordConfirmationValidator(control: AbstractControl): ValidationErrors | null {
+        const password = control.get('password');
+        const confirmPass = control.get('confirmPass');
+
+        if (password && confirmPass && password.value !== confirmPass.value) {
+            return { passwordMismatch: true };
+        }
+
+        return null;
+    }
 
     addForm() {
         const FORM: Register = {
@@ -51,7 +60,6 @@ export class RegistroComponent implements OnInit{
         console.log(FORM);
 
         this._registerService.saveQuestion(FORM).subscribe(data => {
-            this.toastr.success('La pregunta fue registrado con exito!', 'La pregunta fue Registrado!');
             this.router.navigate(['/inicio']);
         })
     }

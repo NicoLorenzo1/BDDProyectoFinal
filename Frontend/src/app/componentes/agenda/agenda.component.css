@@ -1,5 +1,19 @@
 /* calendar.component.css */
 
+.centered {
+    /* Estilos para el div que se centra verticalmente */
+    border: 2px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.titulo {
+    font-size: 2.5rem;
+    /* You can adjust the size as needed */
+    color: rgb(3, 69, 126);
+    font-family: 'Apple System', 'Segoe UI', sans-serif;
+}
+
 .calendar-container {
     max-width: 600px;
     margin: 0 auto;
@@ -28,4 +42,22 @@
 
 .selected {
     background-color: lightblue;
+}
+
+.icon-green {
+    color: green;
+    /* Color verde para éxito */
+}
+
+.icon-gray {
+    color: grey;
+    /* Color gris para deshabilitado */
+}
+
+.icon-rojo {
+    color: red;
+}
+
+.fa-angles-left, .fa-angles-right, .fa-chevron-left, .fa-chevron-right{
+    color: rgb(3, 69, 126);
 }

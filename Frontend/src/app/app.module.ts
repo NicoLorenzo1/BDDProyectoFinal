@@ -7,7 +7,6 @@ import { DatePipe } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
 
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { HeaderComponent } from './componentes/header/header.component';
@@ -32,7 +31,6 @@ import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
         ReactiveFormsModule,
         AppRoutingModule,
         IonicModule.forRoot(),
-        ToastrModule.forRoot(),
         BrowserAnimationsModule,
         HttpClientModule,
     ],
