@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
