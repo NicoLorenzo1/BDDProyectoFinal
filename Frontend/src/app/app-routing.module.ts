@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
-import { AgendaComponent } from './componentes/agenda/agenda.component'
+import { AgendaComponent } from './componentes/agenda/agenda.component';
+import { MainComponent } from './componentes/main/main.component';
+import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lista-funcionarios.component';
 
 
 const routes: Routes = [
@@ -10,6 +12,8 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'agenda', component: AgendaComponent },
+  { path: 'main', component: MainComponent },
+  { path: 'list', component: ListaFuncionariosComponent },
 ];
 
 @NgModule({

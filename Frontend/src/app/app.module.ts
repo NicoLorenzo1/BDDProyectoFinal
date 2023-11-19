@@ -7,7 +7,7 @@ import { DatePipe } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
+
 
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { HeaderComponent } from './componentes/header/header.component';
@@ -16,6 +16,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
+import { MainComponent } from './componentes/main/main.component';
+import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lista-funcionarios.component';
 
 @NgModule({
     declarations: [
@@ -26,13 +28,14 @@ import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
         RegistroComponent,
         AgendaComponent,
         DynamicDatePipe,
+        MainComponent,
+        ListaFuncionariosComponent,
     ],
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         AppRoutingModule,
         IonicModule.forRoot(),
-        ToastrModule.forRoot(),
         BrowserAnimationsModule,
         HttpClientModule,
     ],

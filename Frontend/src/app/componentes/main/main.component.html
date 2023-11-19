@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="mainContent">
+    <div class="informativeCard">
+        <p>{{ result }}</p>
+        <p>Datos de tu carnet de Salud:</p>
+        <ul>
+            <li>
+                <p>Cédula:</p>
+            </li>
+            <li>
+                <p>Vigencia:</p>
+            </li>
+            <li>
+                <p>Fecha de emisión:</p>
+            </li>
+            <li>
+                <p>Fecha de vencimiento:</p>
+            </li>
+        </ul>
+    </div>
+    <div class="informativeCard">
+        <p>No tenes carnet al día</p>
+        <div class="operationButtons">
+            <button class="boton" [routerLink]="['/agenda']">Agendarse</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 import { Register } from '../../models/register';
 import { RegisterService } from '../../services/register.service';
 
@@ -19,7 +19,7 @@ export class RegistroComponent implements OnInit{
 
     constructor(private fb: FormBuilder,
         private router: Router,
-        private toastr: ToastrService,
+
         private _registerService: RegisterService,
         private aRouter: ActivatedRoute) {
         this.formRegister = this.fb.group({
@@ -51,7 +51,7 @@ export class RegistroComponent implements OnInit{
         console.log(FORM);
 
         this._registerService.saveQuestion(FORM).subscribe(data => {
-            this.toastr.success('La pregunta fue registrado con exito!', 'La pregunta fue Registrado!');
+            //this.toastr.success('La pregunta fue registrado con exito!', 'La pregunta fue Registrado!');
             this.router.navigate(['/inicio']);
         })
     }
