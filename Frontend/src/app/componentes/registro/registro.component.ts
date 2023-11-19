@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { generalController } from 'src/app/services/generalController';
 import { Register } from '../../models/register';
-import { RegisterService } from '../../services/register.service';
 
 @Component({
     selector: 'app-registro',
@@ -17,11 +16,7 @@ export class RegistroComponent implements OnInit{
     titulo = 'Register';
     id: string | null;
 
-    constructor(private fb: FormBuilder,
-        private router: Router,
-
-        private _registerService: RegisterService,
-        private aRouter: ActivatedRoute) {
+    constructor(private fb: FormBuilder, private router: Router, private aRouter: ActivatedRoute, private controlador:generalController) {
         this.formRegister = this.fb.group({
             name: ['', Validators.required],
             lastName: ['', Validators.required],
@@ -61,9 +56,10 @@ export class RegistroComponent implements OnInit{
 
         console.log(FORM);
 
-        this._registerService.saveQuestion(FORM).subscribe(data => {
+       /*this.controlador.saveQuestion(FORM).subscribe(data => {
 
             this.router.navigate(['/inicio']);
         })
+        */
     }
 }

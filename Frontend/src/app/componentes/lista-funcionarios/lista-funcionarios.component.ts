@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Funcionario } from 'src/app/clases/funcionario';
-import { ControladorCarnetSalud } from 'src/app/services/controlador-CarnetSalud';
+import { generalController } from 'src/app/services/generalController';
 
 @Component({
   selector: 'app-lista-funcionarios',
@@ -10,7 +10,7 @@ import { ControladorCarnetSalud } from 'src/app/services/controlador-CarnetSalud
 
 
 export class ListaFuncionariosComponent {
-  constructor(private controlador:ControladorCarnetSalud){}
+  constructor(private controlador:generalController){}
   fechaTest: Date= new Date(1995,11,8) //FECHA DE PRUEBA GENERADA PARA PODER CREAR FUNCIONARIOS
 
   funcionarios: Funcionario[] = [
