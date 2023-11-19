@@ -7,14 +7,14 @@
                 <label for="logid">LogID:</label>
                 <input type="text" id="logid" name="logid" required>
             </div>
-    
+
             <div class="campo">
                 <label for="contrasena">Contraseña:</label>
                 <input type="password" id="contrasena" name="contrasena" required>
             </div>
-            
+
             <div class="botonesLogin">
-                <button class="boton" onclick="login()" [routerLink]="['/main']">Iniciar sesión</button>
+                <button class="boton" (click)="login()" [routerLink]="['/main']">Iniciar sesión</button>
                 <button class="boton boton-registro" [routerLink]="['/registro']">Registrarse</button>
                 <button class="boton boton-registro" [routerLink]="['/main']">Main</button>
                 <button class="boton boton-registro" [routerLink]="['/list']">Lista</button>

@@ -15,11 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const config_1 = __importDefault(require("../db/config"));
 const cors_1 = __importDefault(require("cors"));
-const auth_routes_1 = __importDefault(require("../routes/auth.routes"));
+const general_routes_1 = __importDefault(require("../routes/general.routes"));
 class Server {
     constructor() {
-        this.authPath = {
-            auth: '/api/auth'
+        this.Path = {
+            general: '/api/general'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.SERVER_PORT || 3307;
@@ -43,7 +43,7 @@ class Server {
         this.app.use(express_1.default.json());
     }
     routes() {
-        this.app.use(this.authPath.auth, auth_routes_1.default);
+        this.app.use(this.Path.general, general_routes_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
