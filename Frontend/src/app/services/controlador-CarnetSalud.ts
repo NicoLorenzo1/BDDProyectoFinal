@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Funcionario } from '../clases/funcionario';
 import { HttpClient } from '@angular/common/http';
+import { InicioComponent } from '../componentes/inicio/inicio.component';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,11 @@ getUsuario(nombre: string, contrasenia: string){
 
 listarFuncionarios(){
   return this.funcionarios;
+}
+
+login(logid:number,password:string){
+
+return true
 }
 
 logeado(){

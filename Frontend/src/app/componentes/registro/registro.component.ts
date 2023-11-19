@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { Register } from '../../models/register';
 import { RegisterService } from '../../services/register.service';
 
@@ -18,6 +19,7 @@ export class RegistroComponent implements OnInit{
 
     constructor(private fb: FormBuilder,
         private router: Router,
+
         private _registerService: RegisterService,
         private aRouter: ActivatedRoute) {
         this.formRegister = this.fb.group({
@@ -60,6 +62,7 @@ export class RegistroComponent implements OnInit{
         console.log(FORM);
 
         this._registerService.saveQuestion(FORM).subscribe(data => {
+
             this.router.navigate(['/inicio']);
         })
     }

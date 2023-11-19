@@ -15,6 +15,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
+import { MainComponent } from './componentes/main/main.component';
+import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lista-funcionarios.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,8 @@ import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
         RegistroComponent,
         AgendaComponent,
         DynamicDatePipe,
+        MainComponent,
+        ListaFuncionariosComponent,
     ],
     imports: [
         BrowserModule,

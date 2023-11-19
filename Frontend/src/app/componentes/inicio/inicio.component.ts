@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ControladorCarnetSalud } from 'src/app/services/controlador-CarnetSalud';
 
 @Component({
   selector: 'app-inicio',
@@ -6,14 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent {
+constructor(private controlador:ControladorCarnetSalud){}
 
-}
-function login() {
-  // Lógica para el inicio de sesión
-  alert('¡Login ejecutado!');
+login(logid: number, contrasenia: string) {
+  let logok = this.controlador.login(logid,contrasenia)
+  if(logok){
+    alert("Login ejecutado correctamente")
+  }
+  else{
+    alert("Credenciales incorrectas")
+  }
 }
 
-function registro() {
+registro() {
   // Lógica para el registro
   alert('¡Registro ejecutado!');
+}
 }
