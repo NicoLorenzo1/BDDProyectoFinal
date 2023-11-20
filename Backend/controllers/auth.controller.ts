@@ -81,7 +81,7 @@ export const login = async (req: Request, res: Response) => {
         if (!user) {
 
             return res.status(401).json({
-                msg: 'Ci are not correct '
+                msg: 'Ci is not correct '
             });
 
         }
@@ -101,7 +101,7 @@ export const login = async (req: Request, res: Response) => {
         const validPassword = bcryptjs.compareSync(password, data.password);
         if (!validPassword) {
             return res.status(401).json({
-                msg: 'Password are not correct'
+                msg: 'Password is not correct'
             });
         }
         else {

@@ -54,3 +54,7 @@
 .icon-rojo {
     color: red;
 }
+
+.registryBody{
+    min-height: 130vh;
+}

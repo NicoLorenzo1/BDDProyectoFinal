@@ -26,11 +26,15 @@ export class generalController {
     return this.funcionarios;
   }
 
-  logeado() {
+  logeado(){
     this.logueado = true;
   }
 
-  desloguearse() {
+  checkAdminInit(){
+    return this.logueado;
+  }
+
+  desloguearse(){
     this.logueado = false;
   }
 
