@@ -68,7 +68,6 @@ export const registerUser = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
 
     const { ci, password } = req.body;
-    console.log("llego login #########################################" + ci + password);
 
     try {
         //busco usuario por cedula
