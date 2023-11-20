@@ -8,13 +8,43 @@ import { generalController } from 'src/app/services/generalController';
   styleUrls: ['./lista-funcionarios.component.css']
 })
 
-
 export class ListaFuncionariosComponent {
-  constructor(private controlador:generalController){}
-  fechaTest: Date= new Date(1995,11,8) //FECHA DE PRUEBA GENERADA PARA PODER CREAR FUNCIONARIOS
+  constructor(private controlador: generalController) { }
+  fechaTest: Date = new Date(1995, 11, 8) //FECHA DE PRUEBA GENERADA PARA PODER CREAR FUNCIONARIOS
 
-  funcionarios: Funcionario[] = [
-      { ci:1, nombre: 'Jose', apellido: 'a', fechaNacimiento:this.fechaTest, direccion:"Centenario", telefono:"095554793",email:"jose@gmail.com",logid:1111},
-      { ci:1, nombre: 'Lucas', apellido: 'a', fechaNacimiento:this.fechaTest, direccion:"Garibaldi", telefono:"095554794",email:"jose@gmail.com",logid:2222},
-  ];
+  resultados: any[] = [];
+
+  funcionarios: any[] = [];
+
+  //muestra en consola todos los usuarios que estan registrados en la tabla funcionario pero aun no llenaron el formulario de CDS
+  usersNotForm() {
+    let aux: any[] = [];
+
+    this.controlador.usersNotForm().subscribe(
+      data => {
+        this.resultados = data;
+        this.resultados.forEach(element => {
+          element.forEach((user: any) => {
+            const nombre = user.Nombre;
+            const apellido = user.Apellido;
+            const ci = user.CI;
+            const phone = user.Teléfono;
+
+            let dato = {
+              Name: nombre,
+              Surname: apellido,
+              Ci: ci,
+              Phone: phone
+            };
+
+            aux.push(dato);
+          })
+          this.funcionarios = aux;
+        });
+      },
+      error => {
+        console.error('Error al llamar al servidor:', error);
+      }
+    );
+  }
 }

@@ -9,6 +9,7 @@ import { environment } from "../../environments/environment";
 export class generalController {
 
   private readonly apiUrl = environment.apiUrl;
+  public currentUserCi: number = 0;
 
   fechaTest: Date = new Date(1995, 11, 8) //FECHA DE PRUEBA GENERADA PARA PODER CREAR FUNCIONARIOS
   funcionarios: Funcionario[] = [
@@ -36,6 +37,7 @@ export class generalController {
   //loguea al usuario 
   login(ci: number, password: string) {
     const body = { ci, password };
+    this.currentUserCi = ci;
     return this.http.post<any>(this.apiUrl + '/login', body);
   }
 
@@ -54,8 +56,15 @@ export class generalController {
 
     return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
   }
-
+  //devuelve usuarios que no completaron formulario
   usersNotForm() {
     return this.http.get<any>(this.apiUrl + '/usersNotForm');
+  }
+
+  //guarda en la base de datos la fecha almacenada 
+  saveDate(date: Date) {
+    const ci = this.currentUserCi;
+    const body = { ci, date };
+    return this.http.put<any>(this.apiUrl + '/saveDate', body);
   }
 }
