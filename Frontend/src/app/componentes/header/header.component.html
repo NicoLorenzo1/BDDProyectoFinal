@@ -1,6 +1,12 @@
 <div class="containerHeader">
     <div class="home">
-        <button class="btn btn-danger btnHome" [routerLink]="['/inicio']">Inicio</button>
+        <ng-container *ngIf="mostrarBotonInicio">
+          <button class="btn btnHome" [routerLink]="['/inicio']">Inicio</button>
+        </ng-container>
+        <ng-container *ngIf="mostrarBotonesMain">
+          <button class="btnHome" [routerLink]="['/main']">Home</button>
+          <button class="btnExit" (click)="salir()" [routerLink]="['/inicio']">Salir</button>
+        </ng-container>
     </div>
     <div class="title">
         <h1 class="tituloPrincipal">UCU SALUD</h1>
