@@ -13,6 +13,7 @@ import { User } from 'src/app/interfaces/user';
 export class InicioComponent {
 
   formLogin: FormGroup;
+  data: Login = { ci: 0, password: "" };
 
   constructor(private controlador: generalController, private fb: FormBuilder, private router: Router) {
     this.formLogin = this.fb.group({
@@ -21,22 +22,23 @@ export class InicioComponent {
     });
   }
 
-  login() {
-
-    const FORM: Login = {
+  saveData() {
+    this.data = {
       ci: this.formLogin.get('ci')?.value,
       password: this.formLogin.get('password')?.value,
-    }
+    };
+  }
 
-    this.controlador.login(FORM.ci, FORM.password).subscribe({
+  login() {
+    this.controlador.login(this.data.ci, this.data.password).subscribe({
+      next: (response) => {
 
+        if (response.msg === "logueado correctamente!!") {
+          this.router.navigate(['/main']);
 
-      //revisar esto no llega 
-
-      next: (data) => {
-        console.log("llego a redirigir");
-        this.router.navigate(['/main']);
-        alert('Login: ' + JSON.stringify(data));
+        } else {
+          alert("Datos incorrectos!!");
+        }
       },
       error: (error) => {
         alert("Datos incorrectos!!");
@@ -45,5 +47,4 @@ export class InicioComponent {
       }
     });
   }
-
 }
