@@ -32,8 +32,9 @@ export class InicioComponent {
     this.controlador.login(FORM.ci, FORM.password).subscribe({
       next: (data) => {
         // Manejar la respuesta aquí
-        alert('Login: ' + JSON.stringify(data));
         this.router.navigate(['/main']);
+        alert('Login: ' + JSON.stringify(data));
+
       },
       error: (error) => {
         alert("Datos incorrectos!!");
