@@ -26,15 +26,15 @@ export class generalController {
     return this.funcionarios;
   }
 
-  logeado(){
+  logeado() {
     this.logueado = true;
   }
 
-  checkAdminInit(){
+  checkAdminInit() {
     return this.logueado;
   }
 
-  desloguearse(){
+  desloguearse() {
     this.logueado = false;
   }
 
@@ -48,8 +48,6 @@ export class generalController {
   //registra el usuario y completa la tabla funcionario 
   Register(name: string, surname: string, ci: number, birthdate: Date, phone: number, adress: string, email: string, password: string) {
     const body = { name, surname, ci, birthdate, adress, phone, email, password };
-    console.log("llego a controller!############################# " + this.apiUrl + '/register');
-
 
     return this.http.post<any>(this.apiUrl + '/register', body);
   }

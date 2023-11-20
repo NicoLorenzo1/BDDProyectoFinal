@@ -105,7 +105,9 @@ export const login = async (req: Request, res: Response) => {
             });
         }
         else {
-            console.log("logueado correctamente!!################################ " + password + "####" + data.password);
+            return res.status(200).json({
+                msg: 'logueado correctamente!!'
+            });
         }
     }
 
