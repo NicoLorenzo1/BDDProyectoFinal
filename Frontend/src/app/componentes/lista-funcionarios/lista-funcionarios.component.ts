@@ -16,6 +16,9 @@ export class ListaFuncionariosComponent {
 
   funcionarios: any[] = [];
 
+  ngOnInit() {
+    this.usersNotForm();
+  }
   //muestra en consola todos los usuarios que estan registrados en la tabla funcionario pero aun no llenaron el formulario de CDS
   usersNotForm() {
     let aux: any[] = [];
