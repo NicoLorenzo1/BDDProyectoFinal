@@ -54,4 +54,8 @@ export class generalController {
 
     return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
   }
+
+  usersNotForm() {
+    return this.http.get<any>(this.apiUrl + '/usersNotForm');
+  }
 }
