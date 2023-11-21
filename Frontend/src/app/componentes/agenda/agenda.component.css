@@ -62,7 +62,16 @@
     color: rgb(3, 69, 126);
 }
 
-.mainContent{
-    max-height: 70vh;
-    overflow-y: auto;
+
+/* Fecha seleccionada actual o futura */
+.day.selected {
+    background-color: green;
 }
+
+/* Fecha pasada seleccionada */
+.day.selected.past {
+    background-color: red;
+}
+
+
+

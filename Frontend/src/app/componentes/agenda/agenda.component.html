@@ -7,6 +7,8 @@
     <br>
     <br>
 
+    <p *ngIf="fechaPasada" class="text-danger">No se puede seleccionar fechas pasadas</p>
+
     <div class="navigation" style="display: flex; align-items: center;">
         <i class="fa-solid fa-angles-left" style="font-size: 1.5rem;" (click)="prevYear()"></i>
         <i class="fa-solid fa-chevron-left" style="font-size: 1.5rem;" (click)="prevMonth()"></i>
@@ -17,6 +19,7 @@
 
     <div class="days">
         <div *ngFor="let day of daysInMonth" class="day" [class.selected]="day === selectedDay"
+            [class.invalid]="!isFechaValida(day)" [class.past]="fechaPasada && day === selectedDay"
             (click)="selectDay(day)">
             {{ day }}
         </div>
@@ -26,9 +29,15 @@
         <a [routerLink]="['/main']" class="ml-auto">
             <i class="fa-solid fa-arrow-left-long icon-rojo" style="font-size: 2rem;"></i>
         </a>
-        <a class="ml-auto" (click)="isFechaSeleccionada() ? guardarFecha() : null" [routerLink]="['/main']">
-            <i [ngClass]="isFechaSeleccionada() ? 'fa-solid fa-check icon-green' : 'fa-solid fa-check icon-gray'" style="font-size: 2rem;"></i>
+        <a class="ml-auto" (click)="isFechaSeleccionada() ? guardarFecha() : null"
+            [routerLink]="(isFechaSeleccionada() && !fechaPasada) ? ['/main'] : null">
+            <i [ngClass]="{
+            'fa-solid fa-check': true,
+            'icon-green': isFechaSeleccionada() && !fechaPasada,
+            'icon-gray': !isFechaSeleccionada() || fechaPasada
+        }" style="font-size: 2rem;"></i>
         </a>
+
     </div>
 </div>
 <app-footer></app-footer>
