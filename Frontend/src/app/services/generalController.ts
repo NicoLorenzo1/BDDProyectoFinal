@@ -13,7 +13,7 @@ export class generalController {
   private readonly apiUrl = environment.apiUrl;
 
   logueado: boolean = false; //BOOLEANO QUE INDICA SI ESTAS LOGUEADO O NO CON UN USUARIO DE LA BDD
-  public currentUserCi: number = 555;
+  public currentUserCi: number = 54332615;
   public soyAdmin: boolean = false;
 
   funcionarios: Funcionario[] = [];
@@ -65,11 +65,13 @@ export class generalController {
 
     return this.http.get<any>(this.apiUrl + '/usersNotForm');
   }
-  //almacenar en base de datos numero agenda 
+
   //guarda en la base de datos la fecha almacenada 
+
   saveDate(date: Date, number: Number): Observable<Gender> {
+
     const ci = this.currentUserCi;
-    const body = { ci, date, number };
+    const body = { ci, date };
     return this.http.post<Gender>(this.apiUrl + '/saveGender', body)
   }
 }

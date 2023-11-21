@@ -15,12 +15,8 @@ Gender.init({
         primaryKey: true,
     },
     date: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         field: 'Fch_Agenda'
-    },
-    number: {
-        type: DataTypes.INTEGER,
-        field: 'Nro'
     }
 }, {
     sequelize: db,

@@ -1,6 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment-timezone';
+import { Observable, map } from 'rxjs';
 import { Gender } from 'src/app/models/gender';
 import { generalController } from 'src/app/services/generalController';
 
@@ -44,14 +45,14 @@ export class AgendaComponent implements OnInit {
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
         const selectedDate = new Date(year, month, day);
-    
+
         // Verifica si la fecha seleccionada es anterior a la fecha actual
         if (selectedDate < new Date()) {
             this.fechaPasada = true;
             this.selectedDay = day; // Selecciona el día, aunque esté en el pasado, para mostrarlo en rojo
             return;
         }
-    
+
         this.fechaPasada = false;
         if (this.selectedDay === day) {
             // Si se hace clic en el mismo día, deselecciona el día
@@ -62,7 +63,7 @@ export class AgendaComponent implements OnInit {
             this.selectedDay = day;
             // Puedes realizar aquí las acciones adicionales si es necesario al seleccionar un día
         }
-    }    
+    }
 
     isFechaSeleccionada(): boolean {
         return this.selectedDay !== null;
@@ -100,11 +101,11 @@ export class AgendaComponent implements OnInit {
         if (day === null) {
             return false; // Si no se ha seleccionado un día, se considera inválido
         }
-    
+
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
         const selectedDate = new Date(year, month, day);
-    
+
         return selectedDate >= new Date(); // Retorna verdadero si la fecha es mayor o igual al día actual
     }
 
@@ -127,13 +128,10 @@ export class AgendaComponent implements OnInit {
             const year = this.currentDate.getFullYear();
             const month = this.currentDate.getMonth();
             const selectedDate = new Date(year, month, this.selectedDay);
-            this.genderNumber++;
-            console.log("llega a componente")
 
             this.controller.saveDate(selectedDate, this.genderNumber).subscribe(
-                (response: Gender) => { // Cambia HttpResponse<Gender> a Gender aquí
-                    console.log("Respuesta de saveDate:", response);
-                    alert('Fecha guardada:' + this.fechaSeleccionada + "Numero de reserva: " + this.genderNumber);
+                () => {
+                    alert("Agendado con éxito con la Ci: " + this.controller.currentUserCi + "\npara el día: " + selectedDate);
                 },
                 (error) => {
                     console.error("Error en saveDate:", error);
