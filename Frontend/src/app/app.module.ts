@@ -17,6 +17,7 @@ import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
 import { MainComponent } from './componentes/main/main.component';
 import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lista-funcionarios.component';
+import { CarnetSaludComponent } from './componentes/carnet-salud/carnet-salud.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lis
         DynamicDatePipe,
         MainComponent,
         ListaFuncionariosComponent,
+        CarnetSaludComponent,
     ],
     imports: [
         BrowserModule,
