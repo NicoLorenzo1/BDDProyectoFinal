@@ -1,5 +1,6 @@
 .informativeCard {
-    width: 300px;
+    display: flex;
+    width: 60vh;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;

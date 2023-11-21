@@ -83,9 +83,9 @@
                 <a [routerLink]="['/inicio']" class="ml-auto">
                     <i class="fa-solid fa-arrow-left-long icon-rojo" style="font-size: 2rem;"></i>
                 </a>
-                <a class="ml-auto" (click)="isFormValid ? addForm() : false">
+                <a class="ml-auto" (click)="isFormValid ? addForm() : false" [routerLink]="['/inicio']">
                     <i [ngClass]="(isFormValid == true) ? 'fa-solid fa-check icon-green':'fa-solid fa-check icon-gray'"
-                        style="font-size: 2rem;"></i>
+                        style="font-size: 2rem;"></i> 
                 </a>
             </div>
         </form>
