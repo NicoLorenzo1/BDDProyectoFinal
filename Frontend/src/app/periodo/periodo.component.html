@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="mainContent">
+    <div class="informativeCard">
+        <p>Modificar fecha límite: </p>
+        <div class="operationEditors">
+            <div *ngFor="let dropdownOptions of options; let i = index" class="dropdownContainer">
+                <label>{{ dropdownNames[i] }}</label>
+                <!-- Utilizar input con type="date" solo para Fecha de Inicio y Fecha de Fin -->
+                <ng-container *ngIf="i === 2 || i === 3">
+                    <input type="date" class="dateInput">
+                </ng-container>
+                <!-- Utilizar select para el resto de los elementos -->
+                <ng-container *ngIf="i !== 2 && i !== 3">
+                    <select>
+                        <option *ngFor="let option of dropdownOptions" [value]="option">{{ option }}</option>
+                    </select>
+                </ng-container>
+            </div>
+        </div>
+        <div class="operationButtons">
+            <button class="boton boton-registro" [routerLink]="['/main']">Modificar</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

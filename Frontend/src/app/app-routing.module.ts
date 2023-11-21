@@ -6,6 +6,7 @@ import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { MainComponent } from './componentes/main/main.component';
 import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lista-funcionarios.component';
 import { CsFormComponent } from './componentes/cs-form/cs-form.component';
+import { PeriodoComponent } from './periodo/periodo.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'main', component: MainComponent },
   { path: 'list', component: ListaFuncionariosComponent },
   { path: 'csForm', component: CsFormComponent },
+  { path: 'periodo', component: PeriodoComponent },
 ];
 
 @NgModule({

@@ -33,5 +33,14 @@
             <button class="boton boton-registro" [routerLink]="['/list']">+ Info</button>
         </div>
     </div>
+    <div class="informativeCard" id="adminOp" *ngIf="showAdmin">
+        <p>Modificar fecha límite: </p>
+        <div class="operationButtons">
+            <button class="boton boton-registro" [routerLink]="['/periodo']">Modificar</button>
+        </div>
+        
+    </div>
+
+
 </div>
 <app-footer></app-footer>
