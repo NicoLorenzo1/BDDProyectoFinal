@@ -41,7 +41,6 @@ export const registerUser = async (req: Request, res: Response) => {
         //no encuentra el usuario
 
         if (!userExists) {
-            //Encrypt password
             const salt = bcryptjs.genSaltSync();
             user.password = bcryptjs.hashSync(body.password, salt);
             await user.save();
