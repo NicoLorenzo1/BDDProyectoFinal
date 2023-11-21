@@ -41,14 +41,12 @@ export class ListaFuncionariosComponent {
               Ci: ci,
               Phone: phone
             };
-            console.log("prepush: ",aux)
+
             aux.push(dato);
-            console.log("postpush:",aux)
           })
-          
-          console.log("funcionarios",this.funcionarios)
+          this.funcionarios = aux;
+          console.log(this.funcionarios)
         });
-        this.funcionarios = aux;
       },
       error => {
         console.error('Error al llamar al servidor:', error);

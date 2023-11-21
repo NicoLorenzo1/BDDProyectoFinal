@@ -1,5 +1,5 @@
 .informativeCard {
-    width: 60vh;
+    width: 90vh;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -13,18 +13,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 60vh;
     margin: 0;
-    max-height: 80vh;
-    overflow-y:auto; /* Agrega un scrollbar vertical si es necesario */
-}
-
-.boton {
-    padding: 10px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 .operationButtons{
@@ -37,23 +27,24 @@
     ;
 }
 
-.boton-registro {
-    margin-top: 10px;
-    background-color: #2196F3;
-}
-
-.infoTitle{
-    display: flex;
-    justify-content: center;
-}
-#infoCard{
-    background-color: #4caf50;
-}
-
 .operationEditors {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     width: 100%;
+}
+
+.boton {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.boton-registro {
+    margin-top: 10px;
+    background-color: #2196F3;
 }
 
 .dropdownContainer {
@@ -91,4 +82,3 @@ select {
     border: 1px solid #ccc;
     /* Otros estilos específicos para los input de tipo fecha */
 }
-

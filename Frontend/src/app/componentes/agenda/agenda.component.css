@@ -61,3 +61,17 @@
 .fa-angles-left, .fa-angles-right, .fa-chevron-left, .fa-chevron-right{
     color: rgb(3, 69, 126);
 }
+
+
+/* Fecha seleccionada actual o futura */
+.day.selected {
+    background-color: green;
+}
+
+/* Fecha pasada seleccionada */
+.day.selected.past {
+    background-color: red;
+}
+
+
+
