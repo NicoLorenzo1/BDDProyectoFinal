@@ -17,7 +17,6 @@ import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
 import { MainComponent } from './componentes/main/main.component';
 import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lista-funcionarios.component';
-import { CarnetSaludComponent } from './componentes/carnet-salud/carnet-salud.component';
 import { CsFormComponent } from './componentes/cs-form/cs-form.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 
@@ -32,7 +31,6 @@ import { PeriodoComponent } from './periodo/periodo.component';
         DynamicDatePipe,
         MainComponent,
         ListaFuncionariosComponent,
-        CarnetSaludComponent,
         CsFormComponent,
         PeriodoComponent,
     ],

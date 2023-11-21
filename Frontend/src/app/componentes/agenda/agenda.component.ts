@@ -14,6 +14,7 @@ export class AgendaComponent implements OnInit {
     daysInMonth!: number[];
     selectedDay: number | null = null;
     fechaSeleccionada: Date | null = null;
+    fechaPasada: boolean = false;
 
     constructor(private controller: generalController) {
     }
@@ -36,18 +37,28 @@ export class AgendaComponent implements OnInit {
     }
 
     selectDay(day: number): void {
+        const year = this.currentDate.getFullYear();
+        const month = this.currentDate.getMonth();
+        const selectedDate = new Date(year, month, day);
+    
+        // Verifica si la fecha seleccionada es anterior a la fecha actual
+        if (selectedDate < new Date()) {
+            this.fechaPasada = true;
+            this.selectedDay = day; // Selecciona el día, aunque esté en el pasado, para mostrarlo en rojo
+            return;
+        }
+    
+        this.fechaPasada = false;
         if (this.selectedDay === day) {
             // Si se hace clic en el mismo día, deselecciona el día
             this.selectedDay = null;
         } else {
             // Si se hace clic en un día diferente, selecciona ese día
-            const year = this.currentDate.getFullYear();
-            const month = this.currentDate.getMonth();
             this.currentDate = new Date(year, month, day);
             this.selectedDay = day;
             // Puedes realizar aquí las acciones adicionales si es necesario al seleccionar un día
         }
-    }
+    }    
 
     isFechaSeleccionada(): boolean {
         return this.selectedDay !== null;
@@ -79,6 +90,18 @@ export class AgendaComponent implements OnInit {
     prevYear(): void {
         this.currentDate = moment(this.currentDate).subtract(1, 'year').toDate();
         this.generateCalendar();
+    }
+
+    isFechaValida(day: number): boolean {
+        if (day === null) {
+            return false; // Si no se ha seleccionado un día, se considera inválido
+        }
+    
+        const year = this.currentDate.getFullYear();
+        const month = this.currentDate.getMonth();
+        const selectedDate = new Date(year, month, day);
+    
+        return selectedDate >= new Date(); // Retorna verdadero si la fecha es mayor o igual al día actual
     }
 
     guardarFecha(): void {
