@@ -16,7 +16,8 @@ export class HeaderComponent {
       if (event instanceof NavigationEnd) {
         const rutaActual = this.router.url;
         this.mostrarBotonInicio = rutaActual === '/inicio' || rutaActual === '/registro';
-        this.mostrarBotonesMain = rutaActual === '/main' || rutaActual === '/list' || rutaActual === '/agenda';
+        this.mostrarBotonesMain = rutaActual === '/main' || rutaActual === '/list' 
+        || rutaActual === '/agenda' || rutaActual === '/periodo' ;
       }
     });
   }
