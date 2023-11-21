@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IonRadio } from '@ionic/angular';
 import { generalController } from 'src/app/services/generalController';
 
 @Component({
@@ -13,10 +14,15 @@ result:string = 'Tenes Carnet al día';
 currentCI: number = this.controlador.currentUserCi
 
 userData: any [] = []
-showInfo: boolean = false;
-showOptions: boolean = false;
+showInfo: boolean = true;
+showOptions: boolean = true;
+showAdmin:boolean=true;
 
 ngOnInit() {
+  if(this.controlador.currentUserCi==1010){
+    this.controlador.soyAdmin=true
+    this.showAdmin = true;
+  }
   let cs: boolean = false;
   this.gerUserInfo();
   if (cs){

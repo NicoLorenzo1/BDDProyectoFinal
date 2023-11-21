@@ -26,6 +26,7 @@ export class ListaFuncionariosComponent {
     this.controlador.usersNotForm().subscribe(
       data => {
         this.resultados = data;
+        console.log("resultado: ",this.resultados)
         this.resultados.forEach(element => {
           element.forEach((user: any) => {
             const nombre = user.Nombre;
@@ -39,11 +40,14 @@ export class ListaFuncionariosComponent {
               Ci: ci,
               Phone: phone
             };
-
+            console.log("prepush: ",aux)
             aux.push(dato);
+            console.log("postpush:",aux)
           })
-          this.funcionarios = aux;
+          
+          console.log("funcionarios",this.funcionarios)
         });
+        this.funcionarios = aux;
       },
       error => {
         console.error('Error al llamar al servidor:', error);

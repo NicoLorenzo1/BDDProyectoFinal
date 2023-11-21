@@ -1,7 +1,9 @@
 <app-header></app-header>
 <div class="mainContent">
-    <div class="informativeCard" *ngIf="showInfo">
-        <p>{{ result }}</p>
+    <div class="informativeCard" id="infoCard" *ngIf="showInfo">
+        <div class="infoTitle">
+            <h5>{{ result }}</h5>
+        </div>
         <p>Datos de tu carnet de Salud:</p>
         <ul>
             <li>
@@ -21,14 +23,14 @@
     <div class="informativeCard" *ngIf="showOptions">
         <p>No tenes carnet al día</p>
         <div class="operationButtons">
-            <button class="boton" [routerLink]="['/agenda']">Agendarse</button>
+            <button class="boton boton-registro" [routerLink]="['/agenda']">Agendarse</button>
             <button class="boton">Cargar carnet de Salud</button>
         </div>
     </div>
-    <div class="informativeCard">
+    <div class="informativeCard" *ngIf="showAdmin">
         <p>Ver funcionarios sin Carnet de Salud vigente: </p>
         <div class="operationButtons">
-            <button class="boton" [routerLink]="['/list']">+ Info</button>
+            <button class="boton boton-registro" [routerLink]="['/list']">+ Info</button>
         </div>
     </div>
 </div>

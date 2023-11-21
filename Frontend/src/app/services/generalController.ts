@@ -11,7 +11,7 @@ export class generalController {
   private readonly apiUrl = environment.apiUrl;
 
   logueado: boolean = false; //BOOLEANO QUE INDICA SI ESTAS LOGUEADO O NO CON UN USUARIO DE LA BDD
-  public currentUserCi: number = 12345678;
+  public currentUserCi: number = 0;
   public soyAdmin:boolean = false;
 
   funcionarios: Funcionario[] = [ ];
@@ -38,6 +38,7 @@ export class generalController {
   login(ci: number, password: string) {
     const body = { ci, password };
     this.currentUserCi = ci;
+    this.logeado();
     return this.http.post<any>(this.apiUrl + '/login', body);
   }
 
