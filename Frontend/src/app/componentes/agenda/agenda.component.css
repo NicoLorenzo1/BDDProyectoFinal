@@ -61,3 +61,8 @@
 .fa-angles-left, .fa-angles-right, .fa-chevron-left, .fa-chevron-right{
     color: rgb(3, 69, 126);
 }
+
+.mainContent{
+    max-height: 70vh;
+    overflow-y: auto;
+}
