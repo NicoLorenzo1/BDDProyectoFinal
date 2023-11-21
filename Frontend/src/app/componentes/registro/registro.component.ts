@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { generalController } from 'src/app/services/generalController';
 import { Register } from '../../models/register';
-import { RegisterService } from '../../services/register.service';
 
 @Component({
     selector: 'app-registro',
     templateUrl: './registro.component.html',
     styleUrls: ['./registro.component.css']
 })
-export class RegistroComponent implements OnInit{
+export class RegistroComponent implements OnInit {
 
     formRegister: FormGroup;
     isFormValid: boolean = false;
     titulo = 'Register';
     id: string | null;
 
-    constructor(private fb: FormBuilder,
-        private router: Router,
-
-        private _registerService: RegisterService,
-        private aRouter: ActivatedRoute) {
+    constructor(private fb: FormBuilder, private router: Router, private aRouter: ActivatedRoute, private controlador: generalController) {
         this.formRegister = this.fb.group({
             name: ['', Validators.required],
             lastName: ['', Validators.required],
+            ci: ['', Validators.required],
+            birthdate: [''],
+            phone: [''],
+            adress: ['', Validators.required],
             email: ['', [Validators.required, Validators.pattern(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPass: ['', [Validators.required, Validators.minLength(6)]], }, { validators: this.passwordConfirmationValidator });
+            confirmPass: ['', [Validators.required, Validators.minLength(6)]],
+        }, { validators: this.passwordConfirmationValidator });
 
         this.id = this.aRouter.snapshot.paramMap.get('id');
 
@@ -37,7 +37,7 @@ export class RegistroComponent implements OnInit{
         });
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     passwordConfirmationValidator(control: AbstractControl): ValidationErrors | null {
         const password = control.get('password');
@@ -46,7 +46,6 @@ export class RegistroComponent implements OnInit{
         if (password && confirmPass && password.value !== confirmPass.value) {
             return { passwordMismatch: true };
         }
-
         return null;
     }
 
@@ -54,16 +53,26 @@ export class RegistroComponent implements OnInit{
         const FORM: Register = {
             name: this.formRegister.get('name')?.value,
             lastName: this.formRegister.get('lastName')?.value,
+            ci: this.formRegister.get("ci")?.value,
+            birthdate: this.formRegister.get("birthdate")?.value,
+            adress: this.formRegister.get("adress")?.value,
+            phone: this.formRegister.get("phone")?.value,
             email: this.formRegister.get('email')?.value,
             password: this.formRegister.get('password')?.value,
             confirmPass: this.formRegister.get('confirmPass')?.value,
         }
 
-        console.log(FORM);
-
-        this._registerService.saveQuestion(FORM).subscribe(data => {
-
-            this.router.navigate(['/inicio']);
-        })
+        //Llama al controller para post en la base de datos
+        this.controlador.Register(FORM.name, FORM.lastName, FORM.ci, FORM.birthdate, FORM.phone, FORM.adress, FORM.email, FORM.password).subscribe({
+            next: (data) => {
+                // Manejar la respuesta aquí
+                alert('Register: ' + JSON.stringify(data));
+            },
+            error: (error) => {
+                console.error(error);
+                // Manejar errores si es necesario
+            }
+        });
     }
 }
+

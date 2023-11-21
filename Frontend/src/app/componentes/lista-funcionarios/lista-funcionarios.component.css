@@ -1,54 +1,68 @@
 .informativeCard {
-    padding: 0px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    align-items: center;
-    margin: 10px 0;
+  padding: 0px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  margin: 10px 0;
 }
 
 .mainContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  margin: 0;
 }
 
-.tableHeader {
-    background-color: #333; /* Ajusta el color de fondo según tu diseño */
-    color: #fff; /* Ajusta el color del texto según tu diseño */
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    padding: 0px;
+.fixedHeader {
+  background-color: #333;
+  /* Ajusta el color de fondo según tu diseño */
+  color: #fff;
+  /* Ajusta el color del texto según tu diseño */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: 0px;
+  max-width: 99%;
+
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* 5 columnas */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .tableDiv {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .table-header {
-    padding: 8px;
-    background-color: #333;
-    color: #fff;
-    border-left: 1px solid rgb(191, 190, 190);
-  }
-  .table-header {
-    text-align: center;
-  }
-  
-  .table-cell {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Mismo número de columnas que la tabla */
-    border-left: 1px solid rgb(191, 190, 190);
-    border-bottom: 1px solid rgb(191, 190, 190);
-    text-align: center;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* 5 columnas */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-height: 300px; /* o el valor máximo que quieras establecer */
+  overflow-y: auto; /* Agrega un scrollbar vertical si es necesario */
+}
+
+.table-header {
+  padding: 8px;
+  background-color: #333;
+  color: #fff;
+  border-left: 1px solid rgb(191, 190, 190);
+}
+
+.table-header {
+  text-align: center;
+}
+
+.table-cell {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* Mismo número de columnas que la tabla */
+  border-left: 1px solid rgb(191, 190, 190);
+  border-bottom: 1px solid rgb(191, 190, 190);
+  text-align: center;
+}

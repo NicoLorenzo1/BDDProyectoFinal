@@ -41,13 +41,13 @@ export const registerUser = async (req: Request, res: Response) => {
         //no encuentra el usuario
 
         if (!userExists) {
-            //Encrypt password
             const salt = bcryptjs.genSaltSync();
             user.password = bcryptjs.hashSync(body.password, salt);
             await user.save();
 
             // Guardar en la tabla Logins
-            const login = await Login.create({
+            console.log("prueba de llegada")
+            const login = await Login.create({     
                 password: user.password,
             });
             res.json({ user, login });
@@ -68,6 +68,7 @@ export const registerUser = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
 
     const { ci, password } = req.body;
+
     try {
         //busco usuario por cedula
         const user = await User.findOne({
@@ -78,12 +79,16 @@ export const login = async (req: Request, res: Response) => {
 
         //no encuentra el usuario
         if (!user) {
+
             return res.status(401).json({
-                msg: 'Ci are not correct '
+                msg: 'Ci is not correct '
             });
+
         }
         //busco logId del usuario que encontró
+
         const data = await Login.findOne({
+
             where: {
                 logId: user.logId
             }
@@ -96,11 +101,13 @@ export const login = async (req: Request, res: Response) => {
         const validPassword = bcryptjs.compareSync(password, data.password);
         if (!validPassword) {
             return res.status(401).json({
-                msg: 'Password are not correct'
+                msg: 'Password is not correct'
             });
         }
         else {
-            console.log("logueado correctamente!!################################ " + password + "####" + data.password);
+            return res.status(200).json({
+                msg: 'logueado correctamente!!'
+            });
         }
     }
 

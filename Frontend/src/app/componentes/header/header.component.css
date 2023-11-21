@@ -11,13 +11,18 @@
     justify-content: flex-start;
 }
 
-.btnHome{
+.btnHome, .btnExit{
     background-color: rgb(255, 254, 253);
     padding: 10px;
     color: #050000;
     border-radius: 4px;
     border: solid 1px black;
     cursor: pointer;
+    margin-left: 10px;
+}
+
+.btnExit{
+    background-color: rgba(243, 126, 126, 0.719);
 }
 
 .title {
@@ -38,8 +43,4 @@
 .logo img {
     max-width: 60%;
     height: auto;
-}
-
-.homeButton {
-    max-width: 100vp;
 }

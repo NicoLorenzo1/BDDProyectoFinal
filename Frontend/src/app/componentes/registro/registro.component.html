@@ -1,60 +1,95 @@
-<div class="col-lg-6 offset-lg-3 text-center mt-5">
-    <span class="titulo"> {{ titulo }}</span>
-    <form class="mt-5" [formGroup]="formRegister" (ngSubmit)="addForm()">
-        <div class="mb-3">
-            <input type="text" formControlName="name" class="form-control form-control-lg"
-                placeholder="Name">
-            <div class="text-danger"
-                *ngIf="formRegister.get('name')?.hasError('required') && formRegister.get('name')?.touched">
-                <span>The name <strong>is required</strong></span>
-            </div>
-        </div>
-        
-        <div class="mb-3">
-            <input type="text" formControlName="lastName" class="form-control form-control-lg"
-                placeholder="Last Name">
-            <div class="text-danger"
-                *ngIf="formRegister.get('lastName')?.hasError('required') && formRegister.get('lastName')?.touched">
-                <span>The last name <strong>is required</strong></span>
-            </div>
-        </div>
+<app-header></app-header>
 
-        <div class="mb-3">
-            <input type="text" formControlName="email" class="form-control form-control-lg"
-                placeholder="Email">
-            <div class="text-danger"
-                *ngIf="formRegister.get('email')?.hasError('required') && formRegister.get('email')?.touched">
-                <span>The email <strong>is required</strong></span>
+<div class="registryBody">
+    <div class="col-lg-6 offset-lg-3 text-center mt-5">
+        <span class="titulo"> {{ titulo }}</span>
+        <form class="mt-5" [formGroup]="formRegister" (ngSubmit)="addForm()">
+            <div class="mb-3">
+                <input type="text" formControlName="name" class="form-control form-control-lg" placeholder="Nombre">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('name')?.hasError('required') && formRegister.get('name')?.touched">
+                    <span>The name <strong>is required</strong></span>
+                </div>
             </div>
-        </div>
-
-        <div class="mb-3">
-            <input type="text" formControlName="password" class="form-control form-control-lg"
-                placeholder="Password">
-            <div class="text-danger"
-                *ngIf="formRegister.get('password')?.hasError('required') && formRegister.get('password')?.touched">
-                <span>The password <strong>is required</strong></span>
+    
+            <div class="mb-3">
+                <input type="text" formControlName="lastName" class="form-control form-control-lg" placeholder="Apellido">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('lastName')?.hasError('required') && formRegister.get('lastName')?.touched">
+                    <span>The last name <strong>is required</strong></span>
+                </div>
             </div>
-        </div>
-
-        <div class="mb-3">
-            <input type="text" formControlName="confirmPass" class="form-control form-control-lg"
-                placeholder="Confirm Password">
-            <div class="text-danger"
-                *ngIf="formRegister.get('confirmPass')?.hasError('required') && formRegister.get('confirmPass')?.touched">
-                <span>You <strong>need to confirm </strong>the password</span>
+    
+            <div class="mb-3">
+                <input type="text" formControlName="ci" class="form-control form-control-lg"
+                    placeholder="Cedula de identidad">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('ci')?.hasError('required') && formRegister.get('ci')?.touched">
+                    <span>CI <strong>is required</strong></span>
+                </div>
             </div>
-        </div>
-
-        <div class="mb-3 d-flex justify-content-between">
-            <a [routerLink]="['/inicio']" class="ml-auto">
-                <i class="fa-solid fa-arrow-left-long icon-rojo" style="font-size: 2rem;"></i>
-            </a>
-            <a class="ml-auto" href="/inicio" (click)="isFormValid ? addForm() : false">
-                <i [ngClass]="(isFormValid == true) ? 'fa-solid fa-check icon-green':'fa-solid fa-check icon-gray'" style="font-size: 2rem;"></i>
-            </a>
-        </div>
-    </form>
+    
+            <div class="mb-3">
+                <input type="date" formControlName="birthdate" class="form-control form-control-lg"
+                    placeholder="Fecha de nacimiento">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('birthdate')?.hasError('required') && formRegister.get('birthdate')?.touched">
+                    <span>Birthday <strong>is required</strong></span>
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <input type="text" formControlName="adress" class="form-control form-control-lg" placeholder="Dirección">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('adress')?.hasError('required') && formRegister.get('adress')?.touched">
+                    <span>Adress <strong>is required</strong></span>
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <input type="text" formControlName="phone" class="form-control form-control-lg" placeholder="Teléfono">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('phone')?.hasError('required') && formRegister.get('phone')?.touched">
+                    <span>Phone <strong>is required</strong></span>
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <input type="text" formControlName="email" class="form-control form-control-lg" placeholder="Email">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('email')?.hasError('required') && formRegister.get('email')?.touched">
+                    <span>The email <strong>is required</strong></span>
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <input type="text" formControlName="password" class="form-control form-control-lg" placeholder="Contraseña">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('password')?.hasError('required') && formRegister.get('password')?.touched">
+                    <span>The password <strong>is required</strong></span>
+                </div>
+            </div>
+    
+            <div class="mb-3">
+                <input type="text" formControlName="confirmPass" class="form-control form-control-lg"
+                    placeholder="Confirmar contraseña">
+                <div class="text-danger"
+                    *ngIf="formRegister.get('confirmPass')?.hasError('required') && formRegister.get('confirmPass')?.touched">
+                    <span>You <strong>need to confirm </strong>the password</span>
+                </div>
+            </div>
+    
+            <div class="mb-3 d-flex justify-content-between">
+                <a [routerLink]="['/inicio']" class="ml-auto">
+                    <i class="fa-solid fa-arrow-left-long icon-rojo" style="font-size: 2rem;"></i>
+                </a>
+                <a class="ml-auto" (click)="isFormValid ? addForm() : false">
+                    <i [ngClass]="(isFormValid == true) ? 'fa-solid fa-check icon-green':'fa-solid fa-check icon-gray'"
+                        style="font-size: 2rem;"></i> 
+                </a>
+            </div>
+        </form>
+    </div>
 </div>
-<app-footer></app-footer>
 
+<app-footer></app-footer>

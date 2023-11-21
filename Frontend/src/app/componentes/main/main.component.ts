@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ControladorCarnetSalud } from 'src/app/services/controlador-CarnetSalud';
+import { IonRadio } from '@ionic/angular';
+import { generalController } from 'src/app/services/generalController';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,34 @@ import { ControladorCarnetSalud } from 'src/app/services/controlador-CarnetSalud
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  constructor(private controlador:ControladorCarnetSalud){}
+  constructor(private controlador:generalController){}
 
 result:string = 'Tenes Carnet al día';
+currentCI: number = this.controlador.currentUserCi
+
+userData: any [] = []
+showInfo: boolean = true;
+showOptions: boolean = true;
+showAdmin:boolean=true;
+
+ngOnInit() {
+  if(this.controlador.currentUserCi==1010){
+    this.controlador.soyAdmin=true
+    this.showAdmin = true;
+  }
+  let cs: boolean = false;
+  this.gerUserInfo();
+  if (cs){
+
+  }
+  else{
+      
+  }
+
+}
+
+gerUserInfo(){
+
+}
+
 }

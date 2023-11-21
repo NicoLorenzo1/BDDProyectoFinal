@@ -1,15 +1,15 @@
 import express, { Application } from 'express';
 import db from '../db/config';
 import cors from 'cors';
-import authRoutes from '../routes/auth.routes';
+import routes from '../routes/general.routes';
 
 class Server {
 
     private app: Application;
     private port: string | number;
 
-    private authPath = {
-        auth: '/api/auth'
+    private Path = {
+        general: '/api/general'
     }
 
     constructor() {
@@ -36,7 +36,7 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.authPath.auth, authRoutes);
+        this.app.use(this.Path.general, routes);
     }
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment-timezone';
+import { generalController } from 'src/app/services/generalController';
 
 @Component({
     selector: 'app-agenda',
@@ -13,6 +14,9 @@ export class AgendaComponent implements OnInit {
     daysInMonth!: number[];
     selectedDay: number | null = null;
     fechaSeleccionada: Date | null = null;
+
+    constructor(private controller: generalController) {
+    }
 
     ngOnInit(): void {
         this.updateCurrentDateMontevideo();
@@ -49,37 +53,13 @@ export class AgendaComponent implements OnInit {
         return this.selectedDay !== null;
     }
 
-    guardarFecha(): void {
-        if (this.selectedDay !== null) {
-            // Verifica si ya hay una fecha guardada en el día seleccionado
-            if (this.fechaSeleccionada !== null) {
-                const year = this.currentDate.getFullYear();
-                const month = this.currentDate.getMonth();
-                const existingDate = new Date(year, month, this.selectedDay);
-    
-                // Compara la fecha seleccionada con la fecha ya guardada
-                if (this.isSameDay(existingDate, this.fechaSeleccionada)) {
-                    console.log('Ya hay una fecha guardada en este día.');
-                    return; // Si ya hay una fecha guardada en el mismo día, sale de la función
-                }
-            }
-    
-            // Si no hay fecha guardada para este día o son fechas diferentes, guarda la nueva fecha
-            const year = this.currentDate.getFullYear();
-            const month = this.currentDate.getMonth();
-            const selectedDate = new Date(year, month, this.selectedDay);
-            this.fechaSeleccionada = selectedDate;
-            console.log('Fecha guardada:', this.fechaSeleccionada);
-        }
-    }
-    
     // Método para verificar si dos fechas son del mismo día
     isSameDay(date1: Date, date2: Date): boolean {
         return date1.getFullYear() === date2.getFullYear() &&
             date1.getMonth() === date2.getMonth() &&
             date1.getDate() === date2.getDate();
     }
-    
+
 
     nextMonth(): void {
         this.currentDate = moment(this.currentDate).add(1, 'month').toDate();
@@ -99,5 +79,31 @@ export class AgendaComponent implements OnInit {
     prevYear(): void {
         this.currentDate = moment(this.currentDate).subtract(1, 'year').toDate();
         this.generateCalendar();
+    }
+
+    guardarFecha(): void {
+        if (this.selectedDay !== null) {
+            // Verifica si ya hay una fecha guardada en el día seleccionado
+            if (this.fechaSeleccionada !== null) {
+                const year = this.currentDate.getFullYear();
+                const month = this.currentDate.getMonth();
+                const existingDate = new Date(year, month, this.selectedDay);
+
+                // Compara la fecha seleccionada con la fecha ya guardada
+                if (this.isSameDay(existingDate, this.fechaSeleccionada)) {
+                    console.log('Ya hay una fecha guardada en este día.');
+                    return; // Si ya hay una fecha guardada en el mismo día, sale de la función
+                }
+            }
+
+            // Si no hay fecha guardada para este día o son fechas diferentes, guarda la nueva fecha
+            const year = this.currentDate.getFullYear();
+            const month = this.currentDate.getMonth();
+            const selectedDate = new Date(year, month, this.selectedDay);
+            this.fechaSeleccionada = selectedDate;
+
+            this.controller.saveDate(selectedDate);
+                console.log('Fecha guardada:', this.fechaSeleccionada);
+        }
     }
 }

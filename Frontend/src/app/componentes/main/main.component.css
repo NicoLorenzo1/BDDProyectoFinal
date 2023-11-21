@@ -1,5 +1,5 @@
 .informativeCard {
-    width: 300px;
+    width: 60vh;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -13,8 +13,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
     margin: 0;
+    max-height: 80vh;
+    overflow-y:auto; /* Agrega un scrollbar vertical si es necesario */
 }
 
 .boton {
@@ -32,5 +33,62 @@
     flex-wrap: wrap;
     flex-direction: column; /* Agregado para que los botones se apilen verticalmente */
     align-items: center; /* Centra los botones horizontalmente en el contenedor */
+    gap: 10px
+    ;
+}
+
+.boton-registro {
+    margin-top: 10px;
+    background-color: #2196F3;
+}
+
+.infoTitle{
+    display: flex;
+    justify-content: center;
+}
+#infoCard{
+    background-color: #4caf50;
+}
+
+.operationEditors {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 100%;
+}
+
+.dropdownContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px; /* Espacio entre los desplegables */
+    position: relative; /* Volver a poner la posición relativa para los labels */
+}
+
+label {
+    font-weight: bold; /* Hace que el texto sea más visible */
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el desplegable */
+}
+
+select {
+    border-radius: 8px; /* Ajusta este valor según la cantidad de redondez que desees */
+    /* Otros estilos opcionales */
+    padding: 8px; /* Añade espacio interno para mejorar la apariencia */
+    font-size: 14px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde para resaltar el desplegable */
+    /* Otros estilos */
+}
+
+
+#adminOp{
+    width: 90vh;
+}
+
+.dateInput {
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    /* Otros estilos específicos para los input de tipo fecha */
 }
 
