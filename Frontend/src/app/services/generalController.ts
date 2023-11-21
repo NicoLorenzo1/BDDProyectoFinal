@@ -9,16 +9,12 @@ import { environment } from "../../environments/environment";
 export class generalController {
 
   private readonly apiUrl = environment.apiUrl;
-  public currentUserCi: number = 0;
-
-  fechaTest: Date = new Date(1995, 11, 8) //FECHA DE PRUEBA GENERADA PARA PODER CREAR FUNCIONARIOS
-  funcionarios: Funcionario[] = [
-
-    { ci: 48477706, nombre: 'Jose', apellido: 'Varela', fechaNacimiento: this.fechaTest, direccion: 'Av. Centenario 2023', telefono: '095554795', email: 'pepito@gmail.com', logid: 12345 },
-    //AGREGAR MAS FUNCIONARIOS
-  ];
 
   logueado: boolean = false; //BOOLEANO QUE INDICA SI ESTAS LOGUEADO O NO CON UN USUARIO DE LA BDD
+  public currentUserCi: number = 0;
+  public soyAdmin:boolean = false;
+
+  funcionarios: Funcionario[] = [ ];
 
   constructor(private http: HttpClient) { }
 
@@ -42,6 +38,7 @@ export class generalController {
   login(ci: number, password: string) {
     const body = { ci, password };
     this.currentUserCi = ci;
+    this.logeado();
     return this.http.post<any>(this.apiUrl + '/login', body);
   }
 

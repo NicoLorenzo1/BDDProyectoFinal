@@ -35,32 +35,23 @@
             </tbody>
           </table>
           -->
-
-    <button class="boton" (click)="usersNotForm()">Funcionarios sin llenar formulario</button>
-
-
-    <div class="tableDiv">
-      <div class="table-header">#</div>
-      <div class="table-header">Nombre</div>
-      <div class="table-header">Apellido</div>
-      <div class="table-header">Ci</div>
-      <div class="table-header">Phone</div>
-
-
-      <ng-container *ngFor="let funcionario of funcionarios; let i = index">
-        <div class="table-cell">{{ i + 1 }}</div>
-        <div class="table-cell">{{ funcionario.Name }}</div>
-        <div class="table-cell">{{ funcionario.Surname }}</div>
-        <div class="table-cell">{{ funcionario.Ci }}</div>
-        <div class="table-cell">{{ funcionario.Phone }}</div>
-
-
-      </ng-container>
-    </div>
-
-
-
-  </div>
-
-</div>
+          <div class="fixedHeader">
+            <div class="table-header">#</div>
+            <div class="table-header">Nombre</div>
+            <div class="table-header">Apellido</div>
+            <div class="table-header">Ci</div>
+            <div class="table-header">Phone</div>
+          </div>
+      
+          <div class="tableDiv">
+            <ng-container *ngFor="let funcionario of funcionarios; let i = index">
+                <div class="table-cell">{{ i + 1 }}</div>
+                <div class="table-cell">{{ funcionario.Name }}</div>
+                <div class="table-cell">{{ funcionario.Surname }}</div>
+                <div class="table-cell">{{ funcionario.Ci }}</div>
+                <div class="table-cell">{{ funcionario.Phone }}</div>
+            </ng-container>  
+          </div>
+        </div>
+      </div>
 <app-footer></app-footer>

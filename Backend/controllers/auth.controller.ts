@@ -46,7 +46,8 @@ export const registerUser = async (req: Request, res: Response) => {
             await user.save();
 
             // Guardar en la tabla Logins
-            const login = await Login.create({
+            console.log("prueba de llegada")
+            const login = await Login.create({     
                 password: user.password,
             });
             res.json({ user, login });

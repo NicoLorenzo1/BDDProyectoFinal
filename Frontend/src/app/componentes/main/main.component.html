@@ -1,14 +1,13 @@
 <app-header></app-header>
 <div class="mainContent">
-    <div class="informativeCard">
-        <p>{{ result }}</p>
+    <div class="informativeCard" id="infoCard" *ngIf="showInfo">
+        <div class="infoTitle">
+            <h5>{{ result }}</h5>
+        </div>
         <p>Datos de tu carnet de Salud:</p>
         <ul>
             <li>
-                <p>Cédula:</p>
-            </li>
-            <li>
-                <p>Vigencia:</p>
+                <p>Cédula: {{ currentCI }}</p>
             </li>
             <li>
                 <p>Fecha de emisión:</p>
@@ -16,12 +15,22 @@
             <li>
                 <p>Fecha de vencimiento:</p>
             </li>
+            <li>
+                <p>Vigencia: OK</p>
+            </li>
         </ul>
     </div>
-    <div class="informativeCard">
+    <div class="informativeCard" *ngIf="showOptions">
         <p>No tenes carnet al día</p>
         <div class="operationButtons">
-            <button class="boton" [routerLink]="['/agenda']">Agendarse</button>
+            <button class="boton boton-registro" [routerLink]="['/agenda']">Agendarse</button>
+            <button class="boton">Cargar carnet de Salud</button>
+        </div>
+    </div>
+    <div class="informativeCard" *ngIf="showAdmin">
+        <p>Ver funcionarios sin Carnet de Salud vigente: </p>
+        <div class="operationButtons">
+            <button class="boton boton-registro" [routerLink]="['/list']">+ Info</button>
         </div>
     </div>
 </div>

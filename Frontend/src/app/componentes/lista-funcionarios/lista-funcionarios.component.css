@@ -16,7 +16,7 @@
   margin: 0;
 }
 
-.tableHeader {
+.fixedHeader {
   background-color: #333;
   /* Ajusta el color de fondo según tu diseño */
   color: #fff;
@@ -26,6 +26,15 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100%;
   padding: 0px;
+  max-width: 99%;
+
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  /* 5 columnas */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .tableDiv {
@@ -34,7 +43,8 @@
   /* 5 columnas */
   border: 1px solid #ccc;
   border-radius: 8px;
-  overflow: hidden;
+  max-height: 300px; /* o el valor máximo que quieras establecer */
+  overflow-y: auto; /* Agrega un scrollbar vertical si es necesario */
 }
 
 .table-header {

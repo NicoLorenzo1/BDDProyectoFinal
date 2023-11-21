@@ -1,5 +1,5 @@
 .informativeCard {
-    width: 300px;
+    width: 60vh;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -32,5 +32,19 @@
     flex-wrap: wrap;
     flex-direction: column; /* Agregado para que los botones se apilen verticalmente */
     align-items: center; /* Centra los botones horizontalmente en el contenedor */
+    gap: 10px
+    ;
 }
 
+.boton-registro {
+    margin-top: 10px;
+    background-color: #2196F3;
+}
+
+.infoTitle{
+    display: flex;
+    justify-content: center;
+}
+#infoCard{
+    background-color: #4caf50;
+}
