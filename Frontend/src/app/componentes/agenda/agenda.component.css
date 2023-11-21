@@ -62,6 +62,7 @@
     color: rgb(3, 69, 126);
 }
 
+
 /* Fecha seleccionada actual o futura */
 .day.selected {
     background-color: green;
@@ -71,5 +72,6 @@
 .day.selected.past {
     background-color: red;
 }
+
 
 
