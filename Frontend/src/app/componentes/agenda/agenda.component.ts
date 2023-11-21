@@ -1,5 +1,7 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment-timezone';
+import { Gender } from 'src/app/models/gender';
 import { generalController } from 'src/app/services/generalController';
 
 @Component({
@@ -14,6 +16,8 @@ export class AgendaComponent implements OnInit {
     daysInMonth!: number[];
     selectedDay: number | null = null;
     fechaSeleccionada: Date | null = null;
+    public genderNumber: number = 0;
+
 
     constructor(private controller: generalController) {
     }
@@ -96,14 +100,22 @@ export class AgendaComponent implements OnInit {
                 }
             }
 
-            // Si no hay fecha guardada para este día o son fechas diferentes, guarda la nueva fecha
+            // Si no hay fecha guardada para este día, guarda la nueva fecha
             const year = this.currentDate.getFullYear();
             const month = this.currentDate.getMonth();
             const selectedDate = new Date(year, month, this.selectedDay);
-            this.fechaSeleccionada = selectedDate;
+            this.genderNumber++;
+            console.log("llega a componente")
 
-            this.controller.saveDate(selectedDate);
-                console.log('Fecha guardada:', this.fechaSeleccionada);
+            this.controller.saveDate(selectedDate, this.genderNumber).subscribe(
+                (response: Gender) => { // Cambia HttpResponse<Gender> a Gender aquí
+                    console.log("Respuesta de saveDate:", response);
+                    alert('Fecha guardada:' + this.fechaSeleccionada + "Numero de reserva: " + this.genderNumber);
+                },
+                (error) => {
+                    console.error("Error en saveDate:", error);
+                }
+            );
         }
     }
 }
