@@ -1,0 +1,77 @@
+<app-header></app-header>
+
+<div class="registryBody">
+    <div class="col-lg-6 offset-lg-3 text-center mt-5">
+        <span class="titulo"> {{ titulo }}</span>
+        <form class="mt-5" [formGroup]="formCS" (ngSubmit)="addForm()">
+
+            <div class="set">
+                <div class="preText">
+                    <p>Cedula de Identidad: </p>
+                </div>
+                <div class="mb-3 slot">
+                    <input type="text" formControlName="ci" class="form-control form-control-lg"
+                        placeholder="Ej: 44444444">
+                    <div class="text-danger"
+                        *ngIf="formCS.get('ci')?.hasError('required') && formCS.get('ci')?.touched">
+                        <span><strong>Se requiere </strong>CI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="set">
+                <div class="preText">
+                    <p>Fecha de Emisión: </p>
+                </div>
+                <div class="mb-3 slot">
+                    <input type="date" formControlName="fch_Emision" class="form-control form-control-lg"
+                        placeholder="Fecha de emision">
+                    <div class="text-danger"
+                        *ngIf="formCS.get('fch_Emision')?.hasError('required') && formCS.get('fch_Emision')?.touched">
+                        <span><strong>Se requiere</strong> Fecha de Emisión </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="set">
+                <div class="preText">
+                    <p>Fecha de Vencimiento: </p>
+                </div>
+                <div class="mb-3 slot">
+                    <input type="date" formControlName="fch_Vencimiento" class="form-control form-control-lg"
+                        placeholder="Fecha de vencimiento">
+                    <div class="text-danger"
+                        *ngIf="formCS.get('fch_Vencimiento')?.hasError('required') && formCS.get('fch_Vencimiento')?.touched">
+                        <span><strong>Se requiere</strong> Fecha de Vencimiento </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="set">
+                <div class="preText">
+                    <p>Adjuntar Carnet: </p>
+                </div>
+                <div class="mb-3 slot">
+                    <input type="file" formControlName="comprobante" class="form-control form-control-lg"
+                        placeholder="Comprobante">
+                    <div class="text-danger"
+                        *ngIf="formCS.get('comprobante')?.hasError('required') && formCS.get('comprobante')?.touched">
+                        <span><strong>Se requiere</strong> Comprobante </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 d-flex justify-content-between">
+                <a [routerLink]="['/main']" class="ml-auto">
+                    <i class="fa-solid fa-arrow-left-long icon-rojo" style="font-size: 2rem;"></i>
+                </a>
+                <a class="ml-auto" (click)="isFormValid ? addForm() : false">
+                    <i [ngClass]="(isFormValid == true) ? 'fa-solid fa-check icon-green':'fa-solid fa-check icon-gray'"
+                        style="font-size: 2rem;"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<app-footer></app-footer>

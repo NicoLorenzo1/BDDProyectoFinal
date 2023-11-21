@@ -24,7 +24,7 @@
         <p>No tenes carnet al día</p>
         <div class="operationButtons">
             <button class="boton boton-registro" [routerLink]="['/agenda']">Agendarse</button>
-            <button class="boton">Cargar carnet de Salud</button>
+            <button class="boton" [routerLink]="['/csForm']">Cargar carnet de Salud</button>
         </div>
     </div>
     <div class="informativeCard" *ngIf="showAdmin">
