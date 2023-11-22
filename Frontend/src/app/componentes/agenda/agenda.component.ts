@@ -69,13 +69,6 @@ export class AgendaComponent implements OnInit {
         return this.selectedDay !== null;
     }
 
-    // Método para verificar si dos fechas son del mismo día
-    isSameDay(date1: Date, date2: Date): boolean {
-        return date1.getFullYear() === date2.getFullYear() &&
-            date1.getMonth() === date2.getMonth() &&
-            date1.getDate() === date2.getDate();
-    }
-
 
     nextMonth(): void {
         this.currentDate = moment(this.currentDate).add(1, 'month').toDate();
@@ -101,42 +94,38 @@ export class AgendaComponent implements OnInit {
         if (day === null) {
             return false; // Si no se ha seleccionado un día, se considera inválido
         }
-
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
         const selectedDate = new Date(year, month, day);
-
+        console.log("isfechavalida####" + selectedDate)
         return selectedDate >= new Date(); // Retorna verdadero si la fecha es mayor o igual al día actual
     }
 
     guardarFecha(): void {
-        if (this.selectedDay !== null) {
-            // Verifica si ya hay una fecha guardada en el día seleccionado
-            if (this.fechaSeleccionada !== null) {
-                const year = this.currentDate.getFullYear();
-                const month = this.currentDate.getMonth();
-                const existingDate = new Date(year, month, this.selectedDay);
-
-                // Compara la fecha seleccionada con la fecha ya guardada
-                if (this.isSameDay(existingDate, this.fechaSeleccionada)) {
-                    console.log('Ya hay una fecha guardada en este día.');
-                    return; // Si ya hay una fecha guardada en el mismo día, sale de la función
+        this.controller.checkDate(this.currentDate).subscribe({
+            next: (dateExists) => {
+                if (dateExists) {
+                    alert("Ya hay una fecha seleccionada ese día, selecciona otra fecha diferente.");
+                    return;
                 }
+                else {
+                    // Si no hay fecha guardada para este día, guarda la nueva fecha
+                    console.log("CURRENTDATE####" + this.currentDate)
+                    this.controller.saveDate(this.currentDate).subscribe(
+                        () => {
+                            alert("Agendado con éxito con la Ci: " + this.controller.currentUserCi + "\npara el día: " + this.currentDate);
+                        },
+                        (error) => {
+                            console.error("Error en saveDate:", error);
+                        }
+                    );
+                }
+            },
+            error: (error) => {
+                console.error("An error occurred:", error);
+                console.error("Error details:", error.error);
+                // Handle the error as needed
             }
-
-            // Si no hay fecha guardada para este día, guarda la nueva fecha
-            const year = this.currentDate.getFullYear();
-            const month = this.currentDate.getMonth();
-            const selectedDate = new Date(year, month, this.selectedDay);
-
-            this.controller.saveDate(selectedDate, this.genderNumber).subscribe(
-                () => {
-                    alert("Agendado con éxito con la Ci: " + this.controller.currentUserCi + "\npara el día: " + selectedDate);
-                },
-                (error) => {
-                    console.error("Error en saveDate:", error);
-                }
-            );
-        }
+        });
     }
 }

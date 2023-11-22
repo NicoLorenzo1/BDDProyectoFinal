@@ -5,7 +5,6 @@ import db from "../db/config";
 class Gender extends Model {
     declare ci: number;
     declare date: Date;
-    declare number: number;
 }
 
 Gender.init({

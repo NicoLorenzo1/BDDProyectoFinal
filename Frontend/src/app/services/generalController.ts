@@ -68,10 +68,15 @@ export class generalController {
 
   //guarda en la base de datos la fecha almacenada 
 
-  saveDate(date: Date, number: Number): Observable<Gender> {
+  saveDate(date: Date): Observable<Gender> {
 
     const ci = this.currentUserCi;
     const body = { ci, date };
     return this.http.post<Gender>(this.apiUrl + '/saveGender', body)
+  }
+
+  checkDate(selectedDate: string | Date): Observable<any> {
+    const body = { selectedDate };
+    return this.http.post<any>(this.apiUrl + '/checkDate', body);
   }
 }
