@@ -3,11 +3,7 @@ import Gender from "../models/gender";
 import { ErrorCodes } from '../helpers/error-codes';
 import { QueryTypes } from 'sequelize';
 import db from '../db/config';
-//import sequelize from 'sequelize/types/sequelize';
-
-
-//hacer metodo para guardar fecha de agenda en base de datos pasar numero, cedula y fecha  (hay q agregar numero en front y pasarlo a back)
-//no hace post, no ejecuta este metodo, llega hasta el service y luego no ejecuta nada 
+import Periodo from '../models/periodo';
 
 export const postGenderDate = async (req: Request, res: Response) => {
     const { body } = req;
@@ -29,7 +25,6 @@ export const postGenderDate = async (req: Request, res: Response) => {
 
 export const checkDate = async (req: Request, res: Response) => {
     const { body } = req;
-    console.log("backend fecha")
     try {
         const result = await Gender.findOne({
             where: db.where(
@@ -46,3 +41,42 @@ export const checkDate = async (req: Request, res: Response) => {
     }
 }
 
+
+//trae la agenda por su ci
+export const getGender = async (req: Request, res: Response) => {
+    const ci = req.params.ci;
+    try {
+        const result = await Gender.findOne({
+            where: {
+                Ci: ci,
+            },
+        });
+        if (result) {
+            // Se encontró una agenda para el usuario
+            res.json({ found: true, data: result.dataValues });
+        } else {
+            // No se encontró una agenda para el usuario
+            res.json({ found: false, msg: 'No se encontró una agenda ese usuario' });
+        }
+
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+}
+
+export const postPeriodo = async (req: Request, res: Response) => {
+
+    const { body } = req;
+
+    try {
+        // Guardar en la tabla periodos_actualizacion           
+        const form = await Periodo.create(body)
+        res.json({ form });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+};

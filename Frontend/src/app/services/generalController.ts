@@ -53,13 +53,6 @@ export class generalController {
     return this.http.post<any>(this.apiUrl + '/register', body);
 
   }
-
-  //completa el formulario de la tabla carnet_Salud
-  postForm(ci: number, issueDate: Date, expirationDate: Date, proof: Blob) {
-    const body = { ci, issueDate, expirationDate, proof };
-
-    return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
-  }
   //devuelve usuarios que no completaron formulario
   usersNotForm() {
 
@@ -78,5 +71,38 @@ export class generalController {
   checkDate(selectedDate: string | Date): Observable<any> {
     const body = { selectedDate };
     return this.http.post<any>(this.apiUrl + '/checkDate', body);
+  }
+
+  postHealthCard(ci: number, issueDate: Date, expirationDate: Date, proof: string) {
+    const body = { ci, issueDate, expirationDate, proof };
+    return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
+  }
+
+  getHealthCardByCi(ci: number) {
+
+    return this.http.get<any>(`${this.apiUrl}/getHealthCard/${ci}`);
+  }
+
+  //devuelve si encontro el usuario en agenda o no.
+  getGenderByCi(ci: number) {
+    this.http.get<any>(`${this.apiUrl}/getGender/${ci}`).subscribe({
+      next: (data) => {
+
+        if (data.found) {
+          console.log("prueba encontrado")
+        }
+        else {
+          console.log("prueba no encontrado")
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+  postPeriodo(year: Date, periodo: string, startDate: Date, finishDate: Date): Observable<any> {
+    const body = { year, periodo, startDate, finishDate }
+    return this.http.post<any>(this.apiUrl + '/getGender', body)
   }
 }

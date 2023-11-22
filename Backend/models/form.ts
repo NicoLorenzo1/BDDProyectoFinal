@@ -19,7 +19,7 @@ const Form = db.define('Form', {
         type: DataTypes.DATE
     },
     proof: {
-        type: DataTypes.BLOB
+        type: DataTypes.STRING
     },
     adress: {
         type: DataTypes.STRING

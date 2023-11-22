@@ -110,7 +110,6 @@ export class AgendaComponent implements OnInit {
                 }
                 else {
                     // Si no hay fecha guardada para este día, guarda la nueva fecha
-                    console.log("CURRENTDATE####" + this.currentDate)
                     this.controller.saveDate(this.currentDate).subscribe(
                         () => {
                             alert("Agendado con éxito con la Ci: " + this.controller.currentUserCi + "\npara el día: " + this.currentDate);
