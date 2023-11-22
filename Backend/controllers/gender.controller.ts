@@ -3,11 +3,6 @@ import Gender from "../models/gender";
 import { ErrorCodes } from '../helpers/error-codes';
 import { QueryTypes } from 'sequelize';
 import db from '../db/config';
-//import sequelize from 'sequelize/types/sequelize';
-
-
-//hacer metodo para guardar fecha de agenda en base de datos pasar numero, cedula y fecha  (hay q agregar numero en front y pasarlo a back)
-//no hace post, no ejecuta este metodo, llega hasta el service y luego no ejecuta nada 
 
 export const postGenderDate = async (req: Request, res: Response) => {
     const { body } = req;

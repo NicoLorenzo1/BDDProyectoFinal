@@ -53,13 +53,6 @@ export class generalController {
     return this.http.post<any>(this.apiUrl + '/register', body);
 
   }
-
-  //completa el formulario de la tabla carnet_Salud
-  postForm(ci: number, issueDate: Date, expirationDate: Date, proof: Blob) {
-    const body = { ci, issueDate, expirationDate, proof };
-
-    return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
-  }
   //devuelve usuarios que no completaron formulario
   usersNotForm() {
 
@@ -78,5 +71,12 @@ export class generalController {
   checkDate(selectedDate: string | Date): Observable<any> {
     const body = { selectedDate };
     return this.http.post<any>(this.apiUrl + '/checkDate', body);
+  }
+
+  postHealthCard(ci: number, issueDate: Date, expirationDate: Date, proof: string) {
+    const body = { ci, issueDate, expirationDate, proof };
+    console.log("##################################################llego a service front con " + body.ci + body.issueDate + body.expirationDate + body.proof)
+
+    return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
   }
 }
