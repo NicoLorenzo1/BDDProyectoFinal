@@ -5,6 +5,7 @@ import { IForm } from '../interfaces/form.interface';
 import { ErrorCodes } from '../helpers/error-codes';
 import sequelize from 'sequelize/types/sequelize';
 import { QueryTypes } from 'sequelize';
+import Gender from '../models/gender';
 
 export const getForm = async (req: Request, res: Response) => {
     try {
@@ -38,7 +39,6 @@ export const postForm = async (req: Request, res: Response) => {
 
 
 export const usersNotForm = async (req: Request, res: Response) => {
-
     try {
         const users = await db.query(`SELECT Nombre, Apellido, CI, Teléfono FROM Funcionarios AS f WHERE NOT EXISTS (SELECT * FROM Carnet_Salud AS c WHERE c.ci = f.ci)`);
         res.json(users);

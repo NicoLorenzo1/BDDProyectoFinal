@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Funcionario } from '../clases/funcionario';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../environments/environment";
+import { Gender } from '../models/gender';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,10 @@ export class generalController {
   private readonly apiUrl = environment.apiUrl;
 
   logueado: boolean = false; //BOOLEANO QUE INDICA SI ESTAS LOGUEADO O NO CON UN USUARIO DE LA BDD
-  public currentUserCi: number = 0;
-  public soyAdmin:boolean = false;
+  public currentUserCi: number = 54332615;
+  public soyAdmin: boolean = false;
 
-  funcionarios: Funcionario[] = [ ];
+  funcionarios: Funcionario[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -39,6 +41,8 @@ export class generalController {
     const body = { ci, password };
     this.currentUserCi = ci;
     this.logeado();
+    console.log("llego a login service " + (this.apiUrl + '/login'));
+
     return this.http.post<any>(this.apiUrl + '/login', body);
   }
 
@@ -47,6 +51,7 @@ export class generalController {
     const body = { name, surname, ci, birthdate, adress, phone, email, password };
 
     return this.http.post<any>(this.apiUrl + '/register', body);
+
   }
 
   //completa el formulario de la tabla carnet_Salud
@@ -57,13 +62,21 @@ export class generalController {
   }
   //devuelve usuarios que no completaron formulario
   usersNotForm() {
+
     return this.http.get<any>(this.apiUrl + '/usersNotForm');
   }
 
   //guarda en la base de datos la fecha almacenada 
-  saveDate(date: Date) {
+
+  saveDate(date: Date): Observable<Gender> {
+
     const ci = this.currentUserCi;
     const body = { ci, date };
-    return this.http.put<any>(this.apiUrl + '/saveDate', body);
+    return this.http.post<Gender>(this.apiUrl + '/saveGender', body)
+  }
+
+  checkDate(selectedDate: string | Date): Observable<any> {
+    const body = { selectedDate };
+    return this.http.post<any>(this.apiUrl + '/checkDate', body);
   }
 }

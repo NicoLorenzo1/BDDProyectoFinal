@@ -8,34 +8,24 @@ import { generalController } from 'src/app/services/generalController';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-  constructor(private controlador:generalController){}
+  constructor(private controlador: generalController) { }
 
-result:string = 'Tenes Carnet al día';
-currentCI: number = this.controlador.currentUserCi
+  result: string = 'Tenes Carnet al día';
+  currentCI: number = this.controlador.currentUserCi
 
-userData: any [] = []
-showInfo: boolean = true;
-showOptions: boolean = true;
-showAdmin:boolean=true;
+  userData: any[] = []
+  showInfo: boolean = true;
+  showOptions: boolean = true;
+  showAdmin: boolean = true;
 
-ngOnInit() {
-  if(this.controlador.currentUserCi==1010){
-    this.controlador.soyAdmin=true
-    this.showAdmin = true;
-  }
-  let cs: boolean = false;
-  this.gerUserInfo();
-  if (cs){
-
-  }
-  else{
-      
+  ngOnInit() {
+    if (this.controlador.currentUserCi == 1010) {
+      this.controlador.soyAdmin = true
+      this.showAdmin = true;
+    }
+    let cs: boolean = false;
   }
 
-}
 
-gerUserInfo(){
-
-}
 
 }

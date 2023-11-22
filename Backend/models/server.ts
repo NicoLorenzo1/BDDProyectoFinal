@@ -1,6 +1,5 @@
 import express, { Application } from 'express';
 import db from '../db/config';
-import cors from 'cors';
 import routes from '../routes/general.routes';
 
 class Server {
@@ -30,8 +29,14 @@ class Server {
     }
 
     middlewares() {
+        const bodyParser = require('body-parser');
+        const cors = require('cors');
+
         this.app.use(cors());
         this.app.use(express.json());
+
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({ extended: true }));
 
     }
 

@@ -1,14 +1,23 @@
 import { Router } from 'express';
-import { login } from '../controllers/auth.controller';
+import { login, pruebaBack } from '../controllers/auth.controller';
 import { registerUser } from '../controllers/auth.controller';
 import { postForm, usersNotForm } from '../controllers/form.controller';
+import { checkDate, postGenderDate } from '../controllers/gender.controller';
 
 const router = Router();
 
-router.post('/login', login);
 router.post('/register', registerUser);
+
+router.post('/login', login);
+
+router.post('/saveGender', postGenderDate);
+
 router.post('/postHealthCard', postForm);
+
 router.get('/usersNotForm', usersNotForm);
+
+router.post('/checkDate', checkDate);
+
 
 
 

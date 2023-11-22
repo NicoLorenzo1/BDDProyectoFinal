@@ -23,6 +23,7 @@ export class ListaFuncionariosComponent {
   usersNotForm() {
     let aux: any[] = [];
 
+    //viene duplicado data 
     this.controlador.usersNotForm().subscribe(
       data => {
         this.resultados = data;
