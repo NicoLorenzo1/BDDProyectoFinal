@@ -45,7 +45,6 @@ export class ListaFuncionariosComponent {
                 Ci: ci,
                 Phone: phone
               };
-
               aux.push(dato);
             }
           });
