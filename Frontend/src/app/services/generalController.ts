@@ -79,7 +79,25 @@ export class generalController {
   }
 
   getHealthCardByCi(ci: number) {
-    
+
     return this.http.get<any>(`${this.apiUrl}/getHealthCard/${ci}`);
+  }
+
+  //devuelve si encontro el usuario en agenda o no.
+  getGenderByCi(ci: number) {
+    this.http.get<any>(`${this.apiUrl}/getGender/${ci}`).subscribe({
+      next: (data) => {
+
+        if (data.found) {
+          console.log("prueba encontrado")
+        }
+        else {
+          console.log("prueba no encontrado")
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 }

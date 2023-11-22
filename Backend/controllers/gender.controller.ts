@@ -40,3 +40,29 @@ export const checkDate = async (req: Request, res: Response) => {
     }
 }
 
+
+//trae la agenda por su ci
+export const getGender = async (req: Request, res: Response) => {
+    const ci = req.params.ci;
+    try {
+        const result = await Gender.findOne({
+            where: {
+                Ci: ci,
+            },
+        });
+        if (result) {
+            // Se encontró una agenda para el usuario
+            res.json({ found: true, data: result.dataValues });
+        } else {
+            // No se encontró una agenda para el usuario
+            res.json({ found: false, msg: 'No se encontró una agenda ese usuario' });
+        }
+
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+}
+
+

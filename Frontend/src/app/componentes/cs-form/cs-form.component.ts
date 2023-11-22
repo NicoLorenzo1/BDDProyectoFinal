@@ -103,13 +103,14 @@ export class CsFormComponent /*implements OnInit*/ {
         };
     }
 
-    getHealthCard() {
-        this.controlador.getHealthCardByCi(54332615).subscribe({
+    async getHealthCard(ci: number) {
+
+        this.controlador.getHealthCardByCi(ci).subscribe({
             next: (data) => {
                 const proof = data.proof;
                 const issueDate = data.issueDate;
                 const expireDate = data.expireDate;
-                const ci = data.ci;
+                const Ci = data.ci;
             },
             error: (error) => {
                 console.error(error);
