@@ -11,10 +11,6 @@ export const postHealthCard = async (req: Request, res: Response) => {
     const { body } = req;
     try {
         if (body !== null) {
-            console.log("##################################################llego a if con " + body.ci + body.issueDate + body.expirationDate + body.proof)
-
-            const issueDate = new Date(body.issueDate);
-            const expireDate = new Date(body.expireDate);
 
             const gender = await healthCard.build({
                 ci: body.ci,

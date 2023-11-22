@@ -56,7 +56,6 @@ export class CsFormComponent /*implements OnInit*/ {
         }
 
         //Llama al controller para post en la base de datos
-        console.log("##################################################llego a if con " + FORM.ci + FORM.fch_Emision + FORM.fch_Vencimiento + FORM.comprobante)
 
         this.controlador.postHealthCard(FORM.ci, FORM.fch_Emision, FORM.fch_Vencimiento, FORM.comprobante).subscribe({
             next: (data) => {
