@@ -4,9 +4,6 @@ import db from '../db/config';
 import healthCard from '../models/healthCard';
 
 
-//hacer metodo para guardar fecha de agenda en base de datos pasar numero, cedula y fecha  (hay q agregar numero en front y pasarlo a back)
-//no hace post, no ejecuta este metodo, llega hasta el service y luego no ejecuta nada 
-
 export const postHealthCard = async (req: Request, res: Response) => {
     const { body } = req;
     try {
@@ -22,6 +19,24 @@ export const postHealthCard = async (req: Request, res: Response) => {
             res.status(201).json({ message: 'Form saved successfully' });
         }
     } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+}
+
+//trae un carnet de salud por su ci
+export const getHealthCard = async (req: Request, res: Response) => {
+    const ci = req.params.ci;
+    try {
+        const result = await healthCard.findOne({
+            where: {
+                ci: ci,
+            },
+        });
+        res.json(result?.dataValues);
+
+    }
+    catch (error) {
         console.error(error);
         res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
     }

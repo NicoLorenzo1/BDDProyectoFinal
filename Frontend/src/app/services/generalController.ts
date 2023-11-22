@@ -75,7 +75,11 @@ export class generalController {
 
   postHealthCard(ci: number, issueDate: Date, expirationDate: Date, proof: string) {
     const body = { ci, issueDate, expirationDate, proof };
-
     return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
+  }
+
+  getHealthCardByCi(ci: number) {
+    
+    return this.http.get<any>(`${this.apiUrl}/getHealthCard/${ci}`);
   }
 }

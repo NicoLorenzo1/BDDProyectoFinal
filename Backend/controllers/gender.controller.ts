@@ -24,7 +24,6 @@ export const postGenderDate = async (req: Request, res: Response) => {
 
 export const checkDate = async (req: Request, res: Response) => {
     const { body } = req;
-    console.log("backend fecha")
     try {
         const result = await Gender.findOne({
             where: db.where(

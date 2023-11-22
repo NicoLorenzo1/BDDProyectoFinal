@@ -103,5 +103,18 @@ export class CsFormComponent /*implements OnInit*/ {
         };
     }
 
-
+    getHealthCard() {
+        this.controlador.getHealthCardByCi(54332615).subscribe({
+            next: (data) => {
+                const proof = data.proof;
+                const issueDate = data.issueDate;
+                const expireDate = data.expireDate;
+                const ci = data.ci;
+            },
+            error: (error) => {
+                console.error(error);
+                // Manejar errores si es necesario
+            }
+        });
+    }
 }

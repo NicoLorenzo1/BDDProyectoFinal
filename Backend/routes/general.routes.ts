@@ -3,7 +3,7 @@ import { login, pruebaBack } from '../controllers/auth.controller';
 import { registerUser } from '../controllers/auth.controller';
 import { postForm, usersNotForm } from '../controllers/form.controller';
 import { checkDate, postGenderDate } from '../controllers/gender.controller';
-import { postHealthCard } from '../controllers/healthCard.controller';
+import { getHealthCard, postHealthCard } from '../controllers/healthCard.controller';
 
 const router = Router();
 
@@ -18,6 +18,8 @@ router.post('/postHealthCard', postHealthCard);
 router.get('/usersNotForm', usersNotForm);
 
 router.post('/checkDate', checkDate);
+
+router.get('/getHealthCard/:ci', getHealthCard)
 
 
 
