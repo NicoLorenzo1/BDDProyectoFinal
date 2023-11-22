@@ -100,4 +100,9 @@ export class generalController {
       }
     });
   }
+
+  postPeriodo(year: Date, periodo: string, startDate: Date, finishDate: Date): Observable<any> {
+    const body = { year, periodo, startDate, finishDate }
+    return this.http.post<any>(this.apiUrl + '/getGender', body)
+  }
 }

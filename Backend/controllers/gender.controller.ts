@@ -3,6 +3,7 @@ import Gender from "../models/gender";
 import { ErrorCodes } from '../helpers/error-codes';
 import { QueryTypes } from 'sequelize';
 import db from '../db/config';
+import Periodo from '../models/periodo';
 
 export const postGenderDate = async (req: Request, res: Response) => {
     const { body } = req;
@@ -65,4 +66,17 @@ export const getGender = async (req: Request, res: Response) => {
     }
 }
 
+export const postPeriodo = async (req: Request, res: Response) => {
 
+    const { body } = req;
+
+    try {
+        // Guardar en la tabla periodos_actualizacion           
+        const form = await Periodo.create(body)
+        res.json({ form });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+};
