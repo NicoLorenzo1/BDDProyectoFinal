@@ -48,10 +48,11 @@ export class MainComponent {
       next: (data) => {
 
         if (data.found) {
-          console.log("prueba encontrado")
+          console.log("Agenda encontrada!")
+          const genderDate = data.date
         }
         else {
-          console.log("prueba no encontrado")
+          console.log("Agenda no encontrada")
         }
       },
       error: (error) => {
