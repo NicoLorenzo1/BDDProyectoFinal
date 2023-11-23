@@ -26,6 +26,40 @@ export class MainComponent {
     let cs: boolean = false;
   }
 
+  //almacena los datos del carnet de salud si lo encuentra 
+
+  async getHealthCard(ci: number) {
+    this.controlador.getHealthCardByCi(ci).subscribe({
+      next: (data) => {
+        const proof = data.proof;
+        const issueDate = data.issueDate;
+        const expireDate = data.expireDate;
+        const Ci = data.ci;
+      },
+      error: (error) => {
+        console.error(error);
+        // Manejar errores si es necesario
+      }
+    });
+  }
+
+  async getGenderByCi(ci: number) {
+    this.controlador.getGenderByCi(ci).subscribe({
+      next: (data) => {
+
+        if (data.found) {
+          console.log("Agenda encontrada!")
+          const genderDate = data.date
+        }
+        else {
+          console.log("Agenda no encontrada")
+        }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
 
 
 }
