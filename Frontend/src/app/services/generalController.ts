@@ -78,26 +78,15 @@ export class generalController {
     return this.http.post<any>(this.apiUrl + '/postHealthCard', body);
   }
 
+  //devuelve los datos del carnet de salud
   getHealthCardByCi(ci: number) {
-
     return this.http.get<any>(`${this.apiUrl}/getHealthCard/${ci}`);
   }
 
   //devuelve si encontro el usuario en agenda o no.
-  async checkGenderByCi(ci: number): Promise<boolean> {
-    try {
-      const data: any = await this.http.get<any>(`${this.apiUrl}/getGender/${ci}`).toPromise();
-      return data && data.found ? true : false;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  getGenderByCi(ci: number) {
+    return this.http.get<any>(`${this.apiUrl}/getGender/${ci}`)
   }
-  getGenderByCi(ci: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/getGender/${ci}`);
-  }
-
-
 
   postPeriodo(year: Date, periodo: string, startDate: Date, finishDate: Date): Observable<any> {
     const body = { year, periodo, startDate, finishDate }

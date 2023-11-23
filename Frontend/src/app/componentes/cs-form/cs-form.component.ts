@@ -57,6 +57,7 @@ export class CsFormComponent /*implements OnInit*/ {
 
         //Llama al controller para post en la base de datos
 
+        //TODO chequear si la ci existe antes de hacer el post sino devuelve error 
         this.controlador.postHealthCard(FORM.ci, FORM.fch_Emision, FORM.fch_Vencimiento, FORM.comprobante).subscribe({
             next: (data) => {
                 // Manejar la respuesta aquí
@@ -104,19 +105,5 @@ export class CsFormComponent /*implements OnInit*/ {
         };
     }
 
-    async getHealthCard(ci: number) {
 
-        this.controlador.getHealthCardByCi(ci).subscribe({
-            next: (data) => {
-                const proof = data.proof;
-                const issueDate = data.issueDate;
-                const expireDate = data.expireDate;
-                const Ci = data.ci;
-            },
-            error: (error) => {
-                console.error(error);
-                // Manejar errores si es necesario
-            }
-        });
-    }
 }
