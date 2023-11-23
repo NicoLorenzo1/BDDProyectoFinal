@@ -67,6 +67,7 @@ export class RegistroComponent implements OnInit {
             next: (data) => {
                 // Manejar la respuesta aquí
                 alert('Register: ' + JSON.stringify(data));
+                this.router.navigate(['/inicio']);
             },
             error: (error) => {
                 console.error(error);
