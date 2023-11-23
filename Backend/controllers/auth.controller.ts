@@ -26,7 +26,7 @@ export const getUserData = async (req: Request, res: Response) => {
 
 //crea un usuario con un identificador y una contraseña encriptada
 export const registerUser = async (req: Request, res: Response) => {
-
+    console.log("llego a register###########")
     const { body } = req;
 
     try {
@@ -47,7 +47,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
             // Guardar en la tabla Logins
             console.log("prueba de llegada")
-            const login = await Login.create({     
+            const login = await Login.create({
                 password: user.password,
             });
             res.json({ user, login });
@@ -116,3 +116,24 @@ export const login = async (req: Request, res: Response) => {
         res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
     }
 }
+
+
+export const pruebaBack = async (req: Request, res: Response) => {
+    console.log("prueba de llegada pruebaBack");
+
+    try {
+        const loginData = await Login.findAll({
+            where: {
+
+            }
+        });
+
+        res.json(loginData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Internal Server Error',
+        });
+    }
+};
+

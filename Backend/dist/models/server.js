@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const config_1 = __importDefault(require("../db/config"));
-const cors_1 = __importDefault(require("cors"));
 const general_routes_1 = __importDefault(require("../routes/general.routes"));
 class Server {
     constructor() {
@@ -39,8 +38,12 @@ class Server {
         });
     }
     middlewares() {
-        this.app.use((0, cors_1.default)());
+        const bodyParser = require('body-parser');
+        const cors = require('cors');
+        this.app.use(cors());
         this.app.use(express_1.default.json());
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({ extended: true }));
     }
     routes() {
         this.app.use(this.Path.general, general_routes_1.default);

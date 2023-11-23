@@ -23,10 +23,11 @@ export class ListaFuncionariosComponent {
   usersNotForm() {
     let aux: any[] = [];
 
+    //viene duplicado data 
     this.controlador.usersNotForm().subscribe(
       data => {
         this.resultados = data;
-        console.log("resultado: ",this.resultados)
+        console.log("resultado: ", this.resultados)
         this.resultados.forEach(element => {
           element.forEach((user: any) => {
             const nombre = user.Nombre;
@@ -34,17 +35,22 @@ export class ListaFuncionariosComponent {
             const ci = user.CI;
             const phone = user.Teléfono;
 
-            let dato = {
-              Name: nombre,
-              Surname: apellido,
-              Ci: ci,
-              Phone: phone
-            };
+            // Verificar si ya existe el dato con la misma Ci
+            const existeDato = aux.some(dato => dato.Ci === ci);
 
-            aux.push(dato);
-          })
+            if (!existeDato) {
+              let dato = {
+                Name: nombre,
+                Surname: apellido,
+                Ci: ci,
+                Phone: phone
+              };
+              aux.push(dato);
+            }
+          });
+
           this.funcionarios = aux;
-          console.log(this.funcionarios)
+          console.log(this.funcionarios);
         });
       },
       error => {

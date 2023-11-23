@@ -50,15 +50,17 @@ export class CsFormComponent /*implements OnInit*/ {
     addForm() {
         const FORM: csForm = {
             ci: this.formCS.get("ci")?.value,
-            fch_Emision: this.formCS.get("fch_Emisioin")?.value,
-            fch_Vencimiento: this.formCS.get("fch_Vencimiento")?.value,
+            fch_Emision: new Date(this.formCS.get("fch_Emision")?.value),
+            fch_Vencimiento: new Date(this.formCS.get("fch_Vencimiento")?.value),
             comprobante: this.formCS.get("comprobante")?.value,
         }
 
         //Llama al controller para post en la base de datos
-        this.controlador.postForm(FORM.ci, FORM.fch_Emision, FORM.fch_Vencimiento, FORM.comprobante).subscribe({
+
+        this.controlador.postHealthCard(FORM.ci, FORM.fch_Emision, FORM.fch_Vencimiento, FORM.comprobante).subscribe({
             next: (data) => {
                 // Manejar la respuesta aquí
+                console.log("posteo correcto de form")
                 alert('csForm: ' + JSON.stringify(data));
             },
             error: (error) => {
@@ -101,5 +103,19 @@ export class CsFormComponent /*implements OnInit*/ {
         };
     }
 
+    async getHealthCard(ci: number) {
 
+        this.controlador.getHealthCardByCi(ci).subscribe({
+            next: (data) => {
+                const proof = data.proof;
+                const issueDate = data.issueDate;
+                const expireDate = data.expireDate;
+                const Ci = data.ci;
+            },
+            error: (error) => {
+                console.error(error);
+                // Manejar errores si es necesario
+            }
+        });
+    }
 }
