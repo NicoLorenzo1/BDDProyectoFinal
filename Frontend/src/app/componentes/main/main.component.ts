@@ -32,7 +32,7 @@ export class MainComponent {
   }
 
  async  checkAgenda() {
-    const result = await this.controlador.checkGenderByCi(this.currentCI);
+    const result = await this.controlador.getHealthCardByCi(this.currentCI);
     }
 
   getAgenda(){
