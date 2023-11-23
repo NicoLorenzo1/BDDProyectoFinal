@@ -46,20 +46,24 @@
 
 .icon-green {
     color: green;
+    cursor: pointer;
     /* Color verde para éxito */
 }
 
 .icon-gray {
     color: grey;
+    cursor: pointer;
     /* Color gris para deshabilitado */
 }
 
 .icon-rojo {
     color: red;
+    cursor: pointer;
 }
 
 .fa-angles-left, .fa-angles-right, .fa-chevron-left, .fa-chevron-right{
     color: rgb(3, 69, 126);
+    cursor: pointer;
 }
 
 
@@ -73,5 +77,8 @@
     background-color: red;
 }
 
+.invalid{
+    background-color: rgba(128, 128, 128, 0.753);
+}
 
 

@@ -4,6 +4,7 @@ import * as moment from 'moment-timezone';
 import { Observable, map } from 'rxjs';
 import { Gender } from 'src/app/models/gender';
 import { generalController } from 'src/app/services/generalController';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-agenda',
@@ -11,6 +12,7 @@ import { generalController } from 'src/app/services/generalController';
     styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent implements OnInit {
+    [x: string]: any;
 
     titulo = 'Agenda';
     currentDate!: Date;
@@ -21,7 +23,7 @@ export class AgendaComponent implements OnInit {
 
     fechaPasada: boolean = false;
 
-    constructor(private controller: generalController) {
+    constructor(private controller: generalController, private router: Router) {
     }
 
     ngOnInit(): void {
@@ -113,6 +115,7 @@ export class AgendaComponent implements OnInit {
                     this.controller.saveDate(this.currentDate).subscribe(
                         () => {
                             alert("Agendado con éxito con la Ci: " + this.controller.currentUserCi + "\npara el día: " + this.currentDate);
+                            this.router.navigate(['/main']);
                         },
                         (error) => {
                             console.error("Error en saveDate:", error);

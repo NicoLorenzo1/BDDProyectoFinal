@@ -17,15 +17,28 @@ export class MainComponent {
   showInfo: boolean = true;
   showOptions: boolean = true;
   showAdmin: boolean = true;
+  userGenderInfo: any [] = []
 
   ngOnInit() {
     if (this.controlador.currentUserCi == 1010) {
       this.controlador.soyAdmin = true
       this.showAdmin = true;
     }
-    let cs: boolean = false;
+    let csCheck = this.controlador.getGenderByCi(this.currentCI)
+    if (csCheck!=null){
+      this.userGenderInfo.push(csCheck)
+      console.log("Ingo Carnet: ",csCheck)
+    }
   }
 
+ async  checkAgenda() {
+    const result = await this.controlador.checkGenderByCi(this.currentCI);
+    }
+
+  getAgenda(){
+    this.userGenderInfo.push(this.controlador.getGenderByCi(this.currentCI));
+      console.log(this.userGenderInfo);
+  }
 
 
 }
