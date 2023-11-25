@@ -10,8 +10,6 @@ import { generalController } from 'src/app/services/generalController';
 
 export class ListaFuncionariosComponent {
   constructor(private controlador: generalController) { }
-  fechaTest: Date = new Date(1995, 11, 8) //FECHA DE PRUEBA GENERADA PARA PODER CREAR FUNCIONARIOS
-
   resultados: any[] = [];
 
   funcionarios: any[] = [];

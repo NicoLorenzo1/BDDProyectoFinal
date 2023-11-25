@@ -1,57 +1,47 @@
 <app-header></app-header>
 <div class="mainContent">
+  <!--
   <div class="informativeCard">
-    <!--
-            <ul>
-            <li *ngFor="let funcionario of funcionarios; let i = index">
-                <div class="funcionario">
-                    <div class="posicion">{{ i + 1 }}</div>
-                    <div class="datos">
-                        <p><strong>Nombre:</strong> {{ funcionario.nombre }}</p>
-                        <p><strong>Apellido:</strong> {{ funcionario.apellido }}</p>
-                        <p><strong>fechaNacimiento:</strong> {{ funcionario.fechaNacimiento }}</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        
-        
-        <table>
-            <thead>
-              <tr class="tableHeader">
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let funcionario of funcionarios; let i = index">
-                <td>{{ i + 1 }}</td>
-                <td>{{ funcionario.nombre }}</td>
-                <td>{{ funcionario.apellido }}</td>
-                <td>{{ funcionario.email }}</td>
-              </tr>
-            </tbody>
-          </table>
-          -->
-          <div class="fixedHeader">
-            <div class="table-header">#</div>
-            <div class="table-header">Nombre</div>
-            <div class="table-header">Apellido</div>
-            <div class="table-header">Ci</div>
-            <div class="table-header">Phone</div>
-          </div>
-      
-          <div class="tableDiv">
-            <ng-container *ngFor="let funcionario of funcionarios; let i = index">
-                <div class="table-cell">{{ i + 1 }}</div>
-                <div class="table-cell">{{ funcionario.Name }}</div>
-                <div class="table-cell">{{ funcionario.Surname }}</div>
-                <div class="table-cell">{{ funcionario.Ci }}</div>
-                <div class="table-cell">{{ funcionario.Phone }}</div>
-            </ng-container>  
-          </div>
-        </div>
-      </div>
+    <div class="fixedHeader">
+      <div class="table-header">#</div>
+      <div class="table-header">Nombre</div>
+      <div class="table-header">Apellido</div>
+      <div class="table-header">Ci</div>
+      <div class="table-header">Phone</div>
+    </div>
+
+    <div class="tableDiv">
+      <ng-container *ngFor="let funcionario of funcionarios; let i = index">
+        <div class="table-cell">{{ i + 1 }}</div>
+        <div class="table-cell">{{ funcionario.Name }}</div>
+        <div class="table-cell">{{ funcionario.Surname }}</div>
+        <div class="table-cell">{{ funcionario.Ci }}</div>
+        <div class="table-cell">{{ funcionario.Phone }}</div>
+      </ng-container>
+    </div>
+  </div>
+ -->
+  <div class="informativeCard tableCard">
+    <table>
+      <thead>
+        <tr class="tableHeader">
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Ci</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let funcionario of funcionarios; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ funcionario.Name }}</td>
+          <td>{{ funcionario.Surname }}</td>
+          <td>{{ funcionario.Ci }}</td>
+          <td>{{ funcionario.Phone }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <app-footer></app-footer>

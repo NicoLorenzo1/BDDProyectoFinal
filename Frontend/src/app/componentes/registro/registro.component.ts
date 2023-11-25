@@ -66,7 +66,8 @@ export class RegistroComponent implements OnInit {
         this.controlador.Register(FORM.name, FORM.lastName, FORM.ci, FORM.birthdate, FORM.phone, FORM.adress, FORM.email, FORM.password).subscribe({
             next: (data) => {
                 // Manejar la respuesta aquí
-                alert('Registrado correctamente!');
+                alert('Register: ' + JSON.stringify(data));
+                this.router.navigate(['/inicio']);
             },
             error: (error) => {
                 console.error(error);

@@ -10,10 +10,10 @@
                 <p>Cédula: {{ currentCI }}</p>
             </li>
             <li>
-                <p>Fecha de emisión:</p>
+                <p>Fecha de emisión: {{userCSInfo[0].issueDate}}</p>
             </li>
             <li>
-                <p>Fecha de vencimiento:</p>
+                <p>Fecha de vencimiento: {{userCSInfo[0].expireDate}}</p>
             </li>
             <li>
                 <p>Vigencia: OK</p>
@@ -21,25 +21,36 @@
         </ul>
     </div>
     <div class="informativeCard" *ngIf="showOptions">
-        <p>No tenes carnet al día</p>
-        <div class="operationButtons">
-            <button class="boton boton-registro" [routerLink]="['/agenda']">Agendarse</button>
-            <button class="boton" [routerLink]="['/csForm']">Cargar carnet de Salud</button>
+        <div class="infoTitle">
+            <h5>No tenes carnet al día</h5>
+        </div>
+        <div *ngIf="showAgendaInfo">
+
+            <div class="informativeCard dateInfo">
+                <p><strong>Fecha Agendada para renovar Carnet: </strong></p>
+                <p>{{userGenderInfo}}</p>
+            </div>
+        </div>
+        <div *ngIf="showAgendaInfo"> <!--Esta condición hay que negarla cuando se haya solucionado el tema de saber que retorna el negativo de getGenderByCi()-->
+            <div class="operationButtons" >
+                <button class="boton boton-registro" [routerLink]="['/agenda']">Agendarse</button>
+                <button class="boton" [routerLink]="['/csForm']">Cargar carnet de Salud</button>
+            </div>
         </div>
     </div>
     <div class="informativeCard" *ngIf="showAdmin">
-        <p>Ver funcionarios sin Carnet de Salud vigente: </p>
+        <h5>Ver funcionarios sin Carnet de Salud vigente: </h5>
         <div class="operationButtons">
             <button class="boton boton-registro" [routerLink]="['/list']">+ Info</button>
 
         </div>
     </div>
     <div class="informativeCard" id="adminOp" *ngIf="showAdmin">
-        <p>Modificar fecha límite: </p>
+        <h5>Modificar fecha límite: </h5>
         <div class="operationButtons">
             <button class="boton boton-registro" [routerLink]="['/periodo']">Modificar</button>
         </div>
-        
+
     </div>
 
 

@@ -45,14 +45,17 @@
 
 .icon-green {
     color: green; /* Color verde para éxito */
+    cursor: pointer;
 }
 
 .icon-gray {
     color: grey; /* Color gris para deshabilitado */
+    cursor: pointer;
 }
 
 .icon-rojo {
     color: red;
+    cursor: pointer;
 }
 
 .registryBody{

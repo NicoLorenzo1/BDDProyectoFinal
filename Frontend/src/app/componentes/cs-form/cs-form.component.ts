@@ -63,6 +63,7 @@ export class CsFormComponent /*implements OnInit*/ {
                 // Manejar la respuesta aquí
                 console.log("posteo correcto de form")
                 alert('csForm: ' + JSON.stringify(data));
+                this.router.navigate(['/main']);
             },
             error: (error) => {
                 console.error(error);
