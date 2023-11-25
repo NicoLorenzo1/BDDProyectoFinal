@@ -17,71 +17,72 @@ export class MainComponent {
   showInfo: boolean = false;
   showOptions: boolean = false;
   showAdmin: boolean = false;
-  showAgendaInfo:boolean = false;
+  showAgendaInfo: boolean = false;
   userGenderInfo: Date = new Date();
-  userCSInfo: any [] = []
+  userCSInfo: any[] = []
+  getCS: boolean = false;
+  getAgenda: boolean = false;
 
-  ngOnInit() {
+  async ngOnInit() {
     if (this.controlador.currentUserCi == 1010) {
-      this.controlador.soyAdmin = true
+      this.controlador.soyAdmin = true;
       this.showAdmin = true;
-    }
-    else{
-      let csCheck = this.getHealthCard(this.currentCI)
-    if (csCheck!=null){
-      this.userCSInfo.push(csCheck);
-      this.showInfo = true;
-      this.showOptions = true; // Esto se saca cuando el chequeo de csCheck sea corregido
-    }
-    else{
-      this.showOptions = true;
-    }
-
-    let agendaCheck = this.getGenderByCi(this.currentCI);
-    if (agendaCheck!=null){
-      console.log("Info Agenda guardad: ",this.userGenderInfo);
-      this.showAgendaInfo=true;
-    }
-    }
-    
-    
-  }
-
-  //almacena los datos del carnet de salud si lo encuentra 
-
-  async getHealthCard(ci: number) {
-    this.controlador.getHealthCardByCi(ci).subscribe({
-      next: (data) => {
-        const proof = data.proof;
-        const issueDate = data.issueDate;
-        const expireDate = data.expireDate;
-        const Ci = data.ci;
-        let dato = {
-          proof:proof,
-          issueDate: issueDate,
-          expireDate: expireDate,
-          Ci: Ci
+    } else {
+      try {
+        await this.getHealthCard(this.currentCI);
+        console.log("Valor getCS1: ", this.getCS)
+        if (this.getCS) {
+          console.log("Valor getCS2: ", this.getCS)
+          this.showInfo = true;
+        } else {
+          this.showOptions = true;
+          let agendaCheck = this.getGenderByCi(this.currentCI);
+          if (this.showAgendaInfo) {
+            console.log("Info Agenda guardada: ", this.userGenderInfo);
+          }
         }
-
-        let extractedData: any[] = [];
-        extractedData.push(dato)
-        console.log("Extracted Data:",extractedData)
-        this.userCSInfo =extractedData;
-      },
-      error: (error) => {
+      } catch (error) {
         console.error(error);
-        // Manejar errores si es necesario
+        // Handle errors if needed
       }
-    });
+    }
   }
+  
+  async getHealthCard(ci: number) {
+    try {
+      const data = await this.controlador.getHealthCardByCi(ci).toPromise();
+      const proof = data.proof;
+      const issueDate = data.issueDate;
+      const expireDate = data.expireDate;
+      const Ci = data.ci;
+      let dato = {
+        proof: proof,
+        issueDate: issueDate,
+        expireDate: expireDate,
+        Ci: Ci
+      }
+      console.log("Cedula Ecnotrada: ", dato)
+      let extractedData: any[] = [];
+      extractedData.push(dato)
+      console.log("Extracted Data:", extractedData)
+      this.userCSInfo = extractedData;
+      this.getCS = true;
+      console.log("Seteo getCS:", this.getCS)
+    } catch (error) {
+      console.error(error);
+      // Handle errors if needed
+    }
+  }
+  
 
   async getGenderByCi(ci: number) {
     this.controlador.getGenderByCi(ci).subscribe({
       next: (data) => {
 
         if (data.found) {
-          console.log("Agenda encontrada!")
-          this.userGenderInfo=data.Date
+          this.userGenderInfo = data.data.date
+          this.showAgendaInfo = true;
+
           /*
           const genderDate = data.date;
           let dato = {
