@@ -1,0 +1,17 @@
+# Usar una imagen base de Node.js
+FROM node:latest
+
+# Directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copiar el código fuente del backend al contenedor
+COPY Backend /app
+
+# Instalar las dependencias del backend
+RUN npm install
+
+# Puerto en el que escucha el servidor Express
+EXPOSE 3000
+
+# Comando para iniciar el servidor
+CMD ["npm", "start"]

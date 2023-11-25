@@ -1,0 +1,29 @@
+# Usar una imagen base de Node.js
+FROM node:latest as build-stage
+
+# Directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copiar el código fuente del frontend al contenedor
+COPY Frontend /app
+
+# Instalar Angular CLI (si no está instalado)
+RUN npm install -g @angular/cli
+
+# Instalar las dependencias del frontend
+RUN npm install
+
+# Construir la aplicación de Angular
+RUN ng build
+
+# Segunda etapa para la imagen final
+FROM docker.io/library/nginx:alpine
+
+# Copiar los archivos compilados de Angular al directorio de NGINX
+COPY --from=build-stage /app/dist/front-bdd /usr/share/nginx/html
+
+# Puerto en el que escucha nginx
+EXPOSE 80
+
+# Comando para iniciar el servidor nginx
+CMD ["nginx", "-g", "daemon off;"]
