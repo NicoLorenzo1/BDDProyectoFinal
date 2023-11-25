@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, getDebugNode } from '@angular/core';
 import { IonRadio } from '@ionic/angular';
 import { generalController } from 'src/app/services/generalController';
 
@@ -14,30 +14,37 @@ export class MainComponent {
   currentCI: number = this.controlador.currentUserCi
 
   userData: any[] = []
-  showInfo: boolean = true;
-  showOptions: boolean = true;
-  showAdmin: boolean = true;
-  userGenderInfo: any [] = []
+  showInfo: boolean = false;
+  showOptions: boolean = false;
+  showAdmin: boolean = false;
+  showAgendaInfo:boolean = false;
+  userGenderInfo: Date = new Date();
+  userCSInfo: any [] = []
 
   ngOnInit() {
     if (this.controlador.currentUserCi == 1010) {
       this.controlador.soyAdmin = true
       this.showAdmin = true;
     }
-    let csCheck = this.controlador.getGenderByCi(this.currentCI)
+    else{
+      let csCheck = this.getHealthCard(this.currentCI)
     if (csCheck!=null){
-      this.userGenderInfo.push(csCheck)
-      console.log("Ingo Carnet: ",csCheck)
+      this.userCSInfo.push(csCheck);
+      this.showInfo = true;
+      this.showOptions = true; // Esto se saca cuando el chequeo de csCheck sea corregido
     }
-  }
-
- async  checkAgenda() {
-    const result = await this.controlador.getHealthCardByCi(this.currentCI);
+    else{
+      this.showOptions = true;
     }
 
-  getAgenda(){
-    this.userGenderInfo.push(this.controlador.getGenderByCi(this.currentCI));
-      console.log(this.userGenderInfo);
+    let agendaCheck = this.getGenderByCi(this.currentCI);
+    if (agendaCheck!=null){
+      console.log("Info Agenda guardad: ",this.userGenderInfo);
+      this.showAgendaInfo=true;
+    }
+    }
+    
+    
   }
 
   //almacena los datos del carnet de salud si lo encuentra 
@@ -49,6 +56,17 @@ export class MainComponent {
         const issueDate = data.issueDate;
         const expireDate = data.expireDate;
         const Ci = data.ci;
+        let dato = {
+          proof:proof,
+          issueDate: issueDate,
+          expireDate: expireDate,
+          Ci: Ci
+        }
+
+        let extractedData: any[] = [];
+        extractedData.push(dato)
+        console.log("Extracted Data:",extractedData)
+        this.userCSInfo =extractedData;
       },
       error: (error) => {
         console.error(error);
@@ -63,7 +81,17 @@ export class MainComponent {
 
         if (data.found) {
           console.log("Agenda encontrada!")
-          const genderDate = data.date
+          this.userGenderInfo=data.Date
+          /*
+          const genderDate = data.date;
+          let dato = {
+            agendaDate:genderDate
+          }
+          let agendaData: any[] = [];
+          agendaData.push(dato)
+          console.log("creando agendaData: ",agendaData)
+          this.userGenderInfo = agendaData;
+          */
         }
         else {
           console.log("Agenda no encontrada")

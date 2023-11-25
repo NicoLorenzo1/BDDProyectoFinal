@@ -93,4 +93,11 @@ select {
     border: 1px solid #ccc;
     /* Otros estilos específicos para los input de tipo fecha */
 }
-
+.dateInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(239, 229, 84, 0.597);
+}

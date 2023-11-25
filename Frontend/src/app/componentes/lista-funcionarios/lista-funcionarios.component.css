@@ -90,5 +90,5 @@ th {
   width: 100%;
   border-collapse: collapse;
   overflow-y: auto;
-  max-height: 100px; /* o el valor máximo que quieras establecer */
+  max-height: 50vh; /* o el valor máximo que quieras establecer */
 }
