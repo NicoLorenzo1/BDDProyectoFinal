@@ -1,5 +1,6 @@
 <app-header></app-header>
 <div class="mainContent">
+    <!-- TARJETA DE INFORMACIÓN DEL CARNET DE SALUD -->
     <div class="informativeCard" id="infoCard" *ngIf="showInfo">
         <div class="infoTitle">
             <h5>{{ result }}</h5>
@@ -20,23 +21,27 @@
             </li>
         </ul>
     </div>
+    <!-- TARJETA DE OPCIONES SI NO TIENE CARNET DE SALUD -->
     <div class="informativeCard" *ngIf="showOptions">
         <div class="infoTitle">
             <h5>No tenes carnet al día</h5>
         </div>
+        <!-- INFORMACIÓN DE FECHA AGENDADA SI TIENE AGENDADO APRA RENOVAR CS -->
         <div *ngIf="showAgendaInfo">
-
             <div class="informativeCard dateInfo">
                 <p><strong>Fecha Agendada para renovar Carnet: </strong></p>
                 <p>{{userGenderInfo}}</p>
             </div>
         </div>
-        <div *ngIf="showAgendaInfo"> <!--Esta condición hay que negarla cuando se haya solucionado el tema de saber que retorna el negativo de getGenderByCi()-->
-            <div class="operationButtons" >
+        <!-- SI NO TIENE AGENDA QUE APAREZCAN LOS BOTONES -->
+
+        <div class="operationButtons">
+            <div *ngIf="!showAgendaInfo">
                 <button class="boton boton-registro" [routerLink]="['/agenda']">Agendarse</button>
-                <button class="boton" [routerLink]="['/csForm']">Cargar carnet de Salud</button>
             </div>
+            <button class="boton" [routerLink]="['/csForm']">Cargar carnet de Salud</button>
         </div>
+
     </div>
     <div class="informativeCard" *ngIf="showAdmin">
         <h5>Ver funcionarios sin Carnet de Salud vigente: </h5>
