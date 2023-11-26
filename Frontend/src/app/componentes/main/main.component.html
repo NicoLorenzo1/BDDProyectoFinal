@@ -24,12 +24,12 @@
     <!-- TARJETA DE OPCIONES SI NO TIENE CARNET DE SALUD -->
     <div class="informativeCard" *ngIf="showOptions">
         <div class="infoTitle">
-            <h5>No tenes carnet al día</h5>
+            <h5>No tenes carnet de salud al día</h5>
         </div>
         <!-- INFORMACIÓN DE FECHA AGENDADA SI TIENE AGENDADO APRA RENOVAR CS -->
         <div *ngIf="showAgendaInfo">
             <div class="informativeCard dateInfo">
-                <p><strong>Fecha Agendada para renovar Carnet: </strong></p>
+                <p><strong>Fecha Agendada para renovar Carnet de salud: </strong></p>
                 <p>{{userGenderInfo}}</p>
             </div>
         </div>

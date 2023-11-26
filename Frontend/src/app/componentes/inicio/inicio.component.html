@@ -7,19 +7,19 @@
             <form class="mt-5" [formGroup]="formLogin">
 
                 <div class="mb-3">
-                    <input type="text" formControlName="ci" class="form-control form-control-lg" placeholder="CI">
+                    <input type="text" formControlName="ci" class="form-control form-control-lg" placeholder="Cédula de identidad">
                     <div class="text-danger"
                         *ngIf="formLogin.get('ci')?.hasError('required') && formLogin.get('ci')?.touched">
-                        <span>CI <strong>is required</strong></span>
+                        <span>Cédula de identidad <strong>es obligatorio</strong></span>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <input type="text" formControlName="password" class="form-control form-control-lg"
-                        placeholder="Password">
+                        placeholder="Contraseña">
                     <div class="text-danger"
                         *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">
-                        <span>Password <strong>is required</strong></span>
+                        <span>Contraseña <strong>es obligatorio</strong></span>
                     </div>
                 </div>
 
