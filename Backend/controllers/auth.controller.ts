@@ -6,7 +6,6 @@ import { ErrorCodes } from '../helpers/error-codes';
 
 //devuelve la informacion de la tabla logins. Busca por el logId
 export const getUserData = async (req: Request, res: Response) => {
-    console.log("prueba de llegada");
 
     try {
         const loginData = await Login.findAll({
@@ -26,7 +25,6 @@ export const getUserData = async (req: Request, res: Response) => {
 
 //crea un usuario con un identificador y una contraseña encriptada
 export const registerUser = async (req: Request, res: Response) => {
-    console.log("llego a register###########")
     const { body } = req;
 
     try {
@@ -45,8 +43,6 @@ export const registerUser = async (req: Request, res: Response) => {
             user.password = bcryptjs.hashSync(body.password, salt);
             await user.save();
 
-            // Guardar en la tabla Logins
-            console.log("prueba de llegada")
             const login = await Login.create({
                 password: user.password,
             });
@@ -119,7 +115,6 @@ export const login = async (req: Request, res: Response) => {
 
 
 export const pruebaBack = async (req: Request, res: Response) => {
-    console.log("prueba de llegada pruebaBack");
 
     try {
         const loginData = await Login.findAll({
