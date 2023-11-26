@@ -61,7 +61,10 @@
     cursor: pointer;
 }
 
-.fa-angles-left, .fa-angles-right, .fa-chevron-left, .fa-chevron-right{
+.fa-angles-left,
+.fa-angles-right,
+.fa-chevron-left,
+.fa-chevron-right {
     color: rgb(3, 69, 126);
     cursor: pointer;
 }
@@ -77,8 +80,11 @@
     background-color: red;
 }
 
-.invalid{
+.invalid {
     background-color: rgba(128, 128, 128, 0.753);
 }
 
-
+.mainContent {
+    max-height: 60vh;
+    overflow-y: auto;
+}

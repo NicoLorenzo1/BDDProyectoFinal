@@ -15,7 +15,7 @@ export class CsFormComponent /*implements OnInit*/ {
 
     formCS: FormGroup;
     isFormValid: boolean = false;
-    titulo = 'CS Form';
+    titulo = 'Formulario Carnet de Salud';
     id: string | null;
 
     constructor(private fb: FormBuilder, private router: Router, private aRouter: ActivatedRoute, private controlador: generalController) {
@@ -37,16 +37,6 @@ export class CsFormComponent /*implements OnInit*/ {
 
     ngOnInit(): void { }
 
-    passwordConfirmationValidator(control: AbstractControl): ValidationErrors | null {
-        const password = control.get('password');
-        const confirmPass = control.get('confirmPass');
-
-        if (password && confirmPass && password.value !== confirmPass.value) {
-            return { passwordMismatch: true };
-        }
-        return null;
-    }
-
     addForm() {
         const FORM: csForm = {
             ci: this.formCS.get("ci")?.value,
@@ -55,19 +45,15 @@ export class CsFormComponent /*implements OnInit*/ {
             comprobante: this.formCS.get("comprobante")?.value,
         }
 
-        //Llama al controller para post en la base de datos
 
-        //TODO chequear si la ci existe antes de hacer el post sino devuelve error 
+
         this.controlador.postHealthCard(FORM.ci, FORM.fch_Emision, FORM.fch_Vencimiento, FORM.comprobante).subscribe({
             next: (data) => {
-                // Manejar la respuesta aquí
-                console.log("posteo correcto de form")
-                alert('csForm: ' + JSON.stringify(data));
+                alert('Carnet de salud cargado correctamente');
                 this.router.navigate(['/main']);
             },
             error: (error) => {
                 console.error(error);
-                // Manejar errores si es necesario
             }
         });
     }

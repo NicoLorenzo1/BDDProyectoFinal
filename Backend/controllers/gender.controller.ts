@@ -71,7 +71,7 @@ export const postPeriodo = async (req: Request, res: Response) => {
     const { body } = req;
 
     try {
-        // Guardar en la tabla periodos_actualizacion           
+        // Guarda en la tabla periodos_actualizacion           
         const form = await Periodo.create(body)
         res.json({ form });
 
