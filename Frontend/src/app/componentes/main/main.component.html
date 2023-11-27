@@ -27,7 +27,7 @@
             <h5>No tenes carnet de salud al día</h5>
         </div>
         <!-- INFORMACIÓN DE FECHA AGENDADA SI TIENE AGENDADO APRA RENOVAR CS -->
-        <div *ngIf="showAgendaInfo">
+        <div *ngIf="showAgendaInfo && withinDate">
             <div class="informativeCard dateInfo">
                 <p><strong>Fecha Agendada para renovar Carnet de salud: </strong></p>
                 <p>{{userGenderInfo}}</p>
@@ -36,10 +36,16 @@
         <!-- SI NO TIENE AGENDA QUE APAREZCAN LOS BOTONES -->
 
         <div class="operationButtons">
-            <div *ngIf="!showAgendaInfo">
+            <div *ngIf="!showAgendaInfo && withinDate">
                 <button class="boton boton-registro" [routerLink]="['/agenda']">Agendarse</button>
             </div>
-            <button class="boton" [routerLink]="['/csForm']">Cargar carnet de Salud</button>
+            <div *ngIf="withinDate">
+                <button class="boton" [routerLink]="['/csForm']">Cargar carnet de Salud</button>
+            </div>
+        </div>
+        <div class="expiredMessage dateInfo" *ngIf="!withinDate">
+            <p>El periodo de actualización a finalizado</p>
+            <p>Contactese con el administrador</p>
         </div>
 
     </div>

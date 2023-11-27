@@ -7,7 +7,8 @@
             <form class="mt-5" [formGroup]="formLogin">
 
                 <div class="mb-3">
-                    <input type="text" formControlName="ci" class="form-control form-control-lg" placeholder="Cédula de identidad">
+                    <input type="text" formControlName="ci" class="form-control form-control-lg"
+                        placeholder="Cédula de identidad">
                     <div class="text-danger"
                         *ngIf="formLogin.get('ci')?.hasError('required') && formLogin.get('ci')?.touched">
                         <span>Cédula de identidad <strong>es obligatorio</strong></span>
@@ -29,8 +30,10 @@
             <div class="botonesLogin">
                 <button class="boton" (click)="saveData(); login()">Iniciar sesión</button>
                 <button class="boton boton-registro" [routerLink]="['/registro']">Registrarse</button>
+                <!--
                 <button class="boton boton-registro" [routerLink]="['/main']">Main</button>
                 <button class="boton boton-registro" [routerLink]="['/list']">Lista</button>
+                -->
             </div>
         </div>
     </div>
