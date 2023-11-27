@@ -87,4 +87,6 @@
 .mainContent {
     max-height: 60vh;
     overflow-y: auto;
+    padding-right: 5vh;
+    margin-right: 10vh;
 }

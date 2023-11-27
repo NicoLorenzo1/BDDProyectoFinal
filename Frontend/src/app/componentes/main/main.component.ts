@@ -30,22 +30,30 @@ export class MainComponent {
       this.showAdmin = true;
     } else {
       try {
-        await this.getHealthCard(this.currentCI);
-        console.log("Valor getCS1: ", this.getCS)
-        if (this.getCS) {
-          console.log("Valor getCS2: ", this.getCS)
-          this.showInfo = true;
-        } else {
-          await this.getPeriod();
-          if (this.withinDate) {
+        this.getHealthCard(this.currentCI).then(() => {
+          console.log("que mierda hay aca: ",this.getCS)
+          if (this.getCS) {
+            this.showInfo = true;
+          } else {
             this.showOptions = true;
-            let agendaCheck = this.getGenderByCi(this.currentCI);
-            if (this.showAgendaInfo) {
-              console.log("Info Agenda guardada: ", this.userGenderInfo);
-            }
+            this.getPeriod().then(() => {
+              console.log("bool withinDate ###: ", this.withinDate);
+              if (this.withinDate) {
+                this.getGenderByCi(this.currentCI).then(() => {
+                  if (this.showAgendaInfo) {
+                    console.log("Info Agenda guardada: ", this.userGenderInfo);
+                  }
+                }).catch((error) => {
+                  console.error(error);
+                });
+              }
+            }).catch((error) => {
+              console.error(error);
+            });
           }
-
-        }
+        }).catch((error) => {
+          console.error(error);
+        });
       } catch (error) {
         console.error(error);
       }
@@ -54,33 +62,31 @@ export class MainComponent {
 
   async getHealthCard(ci: number) {
     try {
-      const data = await this.controlador.getHealthCardByCi(ci).subscribe({
-        next: (data) => {
-
-          const proof = data.proof;
-          const issueDate = data.issueDate;
-          const expireDate = data.expireDate;
-          const Ci = data.ci;
-          let dato = {
-            proof: proof,
-            issueDate: issueDate,
-            expireDate: expireDate,
-            Ci: Ci
-          }
-          console.log("Cedula Ecnotrada: ", dato)
-          let extractedData: any[] = [];
-          extractedData.push(dato)
-          console.log("Extracted Data:", extractedData)
-          this.userCSInfo = extractedData;
-          this.getCS = true;
-          console.log("Seteo getCS:", this.getCS)
-        }
-      });
-
+      const data = await this.controlador.getHealthCardByCi(ci).toPromise();
+  
+      const proof = data.proof;
+      const issueDate = data.issueDate;
+      const expireDate = data.expireDate;
+      const Ci = data.ci;
+      const dato = {
+        proof: proof,
+        issueDate: issueDate,
+        expireDate: expireDate,
+        Ci: Ci
+      };
+      console.log("Cedula Encontrada: ", dato);
+      const extractedData: any[] = [];
+      extractedData.push(dato);
+      console.log("Extracted Data:", extractedData);
+      this.userCSInfo = extractedData;
+      this.getCS = true;
+      console.log("Seteo getCS:", this.getCS);
     } catch (error) {
       console.error(error);
     }
   }
+  
+
 
 
   async getGenderByCi(ci: number) {
@@ -104,15 +110,24 @@ export class MainComponent {
 
   async getPeriod() {
     try {
-      const data = await this.controlador.getPeriod().subscribe({
-        next: (data) => {
-          const year = data.latestPeriod.year;
-          const periodo = data.latestPeriod.periodo;
-          const startDate = data.latestPeriod.startDate;
-          const finishDate = data.latestPeriod.finishDate;
-          console.log("periodo#########" + year + periodo + startDate + finishDate)
-        }
-      })
+      const data = await this.controlador.getPeriod().toPromise();
+      const year = data.latestPeriod.year;
+      const periodo = data.latestPeriod.periodo;
+      const startDate = data.latestPeriod.startDate;
+      const finishDate = data.latestPeriod.finishDate;
+  
+      const currentDate = new Date();
+      const startDateObj = new Date(startDate);
+      startDateObj.setHours(0, 0, 0);
+      const finishDateObj = new Date(finishDate);
+      finishDateObj.setHours(23, 59, 59);
+  
+      if (currentDate >= startDateObj && currentDate <= finishDateObj) {
+        this.withinDate = true;
+        console.log("La fecha actual está dentro del período.", this.withinDate);
+      } else {
+        console.log("La fecha actual está fuera del período.");
+      }
     } catch (error) {
       console.error(error);
     }

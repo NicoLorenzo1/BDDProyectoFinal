@@ -24,6 +24,7 @@ export class PeriodoComponent {
 
   postPeriodo() {
     const year = this.tempDropdownValues[0];
+    console.log("variable year: ",year)
     const periodo = this.tempDropdownValues[1];
     const startDate = new Date(this.tempDateValues[2]);
     const finishDate = new Date(this.tempDateValues[3]);
