@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Funcionario } from 'src/app/clases/funcionario';
 import { generalController } from 'src/app/services/generalController';
 
 @Component({
@@ -17,15 +16,13 @@ export class ListaFuncionariosComponent {
   ngOnInit() {
     this.usersNotForm();
   }
-  //muestra en consola todos los usuarios que estan registrados en la tabla funcionario pero aun no llenaron el formulario de CDS
+  //Muestra en consola todos los usuarios que estan registrados en la tabla funcionario pero aun no llenaron el formulario de CDS
   usersNotForm() {
     let aux: any[] = [];
 
-    //viene duplicado data 
     this.controlador.usersNotForm().subscribe(
       data => {
         this.resultados = data;
-        console.log("resultado: ", this.resultados)
         this.resultados.forEach(element => {
           element.forEach((user: any) => {
             const nombre = user.Nombre;
@@ -48,7 +45,6 @@ export class ListaFuncionariosComponent {
           });
 
           this.funcionarios = aux;
-          console.log(this.funcionarios);
         });
       },
       error => {

@@ -48,31 +48,35 @@ export class MainComponent {
         }
       } catch (error) {
         console.error(error);
-        // Handle errors if needed
       }
     }
   }
 
   async getHealthCard(ci: number) {
     try {
-      const data = await this.controlador.getHealthCardByCi(ci).toPromise();
-      const proof = data.proof;
-      const issueDate = data.issueDate;
-      const expireDate = data.expireDate;
-      const Ci = data.ci;
-      let dato = {
-        proof: proof,
-        issueDate: issueDate,
-        expireDate: expireDate,
-        Ci: Ci
-      }
-      console.log("Cedula Ecnotrada: ", dato)
-      let extractedData: any[] = [];
-      extractedData.push(dato)
-      console.log("Extracted Data:", extractedData)
-      this.userCSInfo = extractedData;
-      this.getCS = true;
-      console.log("Seteo getCS:", this.getCS)
+      const data = await this.controlador.getHealthCardByCi(ci).subscribe({
+        next: (data) => {
+
+          const proof = data.proof;
+          const issueDate = data.issueDate;
+          const expireDate = data.expireDate;
+          const Ci = data.ci;
+          let dato = {
+            proof: proof,
+            issueDate: issueDate,
+            expireDate: expireDate,
+            Ci: Ci
+          }
+          console.log("Cedula Ecnotrada: ", dato)
+          let extractedData: any[] = [];
+          extractedData.push(dato)
+          console.log("Extracted Data:", extractedData)
+          this.userCSInfo = extractedData;
+          this.getCS = true;
+          console.log("Seteo getCS:", this.getCS)
+        }
+      });
+
     } catch (error) {
       console.error(error);
     }
@@ -86,17 +90,6 @@ export class MainComponent {
         if (data.found) {
           this.userGenderInfo = data.data.date
           this.showAgendaInfo = true;
-
-          /*
-          const genderDate = data.date;
-          let dato = {
-            agendaDate:genderDate
-          }
-          let agendaData: any[] = [];
-          agendaData.push(dato)
-          console.log("creando agendaData: ",agendaData)
-          this.userGenderInfo = agendaData;
-          */
         }
         else {
           console.log("Agenda no encontrada")
@@ -111,25 +104,18 @@ export class MainComponent {
 
   async getPeriod() {
     try {
-      const data = await this.controlador.getPeriod().toPromise();
-      const year = data.year;
-      const periodo = data.periodo;
-      const startDate = data.startDate;
-      const finishDate = data.finishDate;
-      let dato = {
-        year: year,
-        periodo: periodo,
-        startDate: startDate,
-        finishDate: finishDate
-      }
-      console.log("Periodo encontrado: ", dato)
-      let extractedData: any[] = [];
-      extractedData.push(dato)
-
+      const data = await this.controlador.getPeriod().subscribe({
+        next: (data) => {
+          const year = data.latestPeriod.year;
+          const periodo = data.latestPeriod.periodo;
+          const startDate = data.latestPeriod.startDate;
+          const finishDate = data.latestPeriod.finishDate;
+          console.log("periodo#########" + year + periodo + startDate + finishDate)
+        }
+      })
     } catch (error) {
       console.error(error);
-      // Handle errors if needed
     }
   }
-
 }
+
