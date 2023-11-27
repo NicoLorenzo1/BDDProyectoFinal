@@ -66,11 +66,13 @@ export const getGender = async (req: Request, res: Response) => {
 }
 
 export const postPeriodo = async (req: Request, res: Response) => {
+    console.log("guardo periodo###################")
 
     const { body } = req;
 
     try {
-        // Guarda en la tabla periodos_actualizacion           
+        // Guarda en la tabla periodos_actualizacion     
+        console.log(body.year + body.periodo + body.startDate + body.finishDate + "body#######")
         const form = await Periodo.create(body)
         res.json({ form });
 

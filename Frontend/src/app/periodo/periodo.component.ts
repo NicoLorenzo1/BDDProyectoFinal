@@ -27,14 +27,13 @@ export class PeriodoComponent {
 
 
   postPeriodo() {
-    this.controller.postPeriod(this.year, this.periodo, this.startDate, this.finishDate).subscribe({
+    this.controller.postPeriodo(this.year, this.periodo, new Date(this.startDate), new Date(this.finishDate)).subscribe({
       next: (response) => {
-
+        alert("Periodo modificado correctamente")
       },
       error: (error) => {
-        alert("Datos incorrectos!!");
+        alert("Error al modificar periodo!!");
         console.error(error);
-        // Manejar errores si es necesario
       }
     });
   }
