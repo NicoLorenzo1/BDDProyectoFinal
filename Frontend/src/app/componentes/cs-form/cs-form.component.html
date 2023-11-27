@@ -10,8 +10,7 @@
                     <p>Cedula de Identidad: </p>
                 </div>
                 <div class="mb-3 slot">
-                    <input type="text" formControlName="ci" class="form-control form-control-lg"
-                        placeholder="Ej: 44444444">
+                    <input type="text" formControlName="ci" class="form-control form-control-lg" [value]="currentCI" [disabled]="true">
                     <div class="text-danger"
                         *ngIf="formCS.get('ci')?.hasError('required') && formCS.get('ci')?.touched">
                         <span><strong>Se requiere </strong>CI</span>

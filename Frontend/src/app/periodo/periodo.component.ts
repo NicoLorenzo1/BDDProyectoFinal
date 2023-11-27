@@ -27,7 +27,7 @@ export class PeriodoComponent {
 
 
   postPeriodo() {
-    this.controller.postPeriodo(this.year, this.periodo, this.startDate, this.finishDate).subscribe({
+    this.controller.postPeriod(this.year, this.periodo, this.startDate, this.finishDate).subscribe({
       next: (response) => {
 
       },
