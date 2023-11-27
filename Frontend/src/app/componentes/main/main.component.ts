@@ -53,35 +53,28 @@ export class MainComponent {
   }
 
   async getHealthCard(ci: number) {
-    console.log("prueba llegada###########")
     try {
-      this.controlador.getHealthCardByCi(ci).subscribe({
+      const data = await this.controlador.getHealthCardByCi(ci).subscribe({
         next: (data) => {
-          console.log("data################ no null" + data.issueDate + data.expireDate + data.ci)
-          if (data.issueDate != null && data.expireDate != null && data.ci != null) {
-            const issueDate = data.issueDate;
-            const expireDate = data.expireDate;
-            const Ci = data.ci;
-            let dato = {
-              issueDate: issueDate,
-              expireDate: expireDate,
-              Ci: Ci
-            }
-            console.log("Cedula Ecnotrada: ", dato)
-            let extractedData: any[] = [];
-            extractedData.push(dato)
-            console.log("Extracted Data:", extractedData)
-            this.userCSInfo = extractedData;
-            this.getCS = true;
-            console.log("Seteo getCS:", this.getCS)
-          }
 
-          else {
-            console.log("data################ null" + data.issueDate + data.expireDate + data.ci)
-            this.showInfo = false;
+          const proof = data.proof;
+          const issueDate = data.issueDate;
+          const expireDate = data.expireDate;
+          const Ci = data.ci;
+          let dato = {
+            proof: proof,
+            issueDate: issueDate,
+            expireDate: expireDate,
+            Ci: Ci
           }
+          console.log("Cedula Ecnotrada: ", dato)
+          let extractedData: any[] = [];
+          extractedData.push(dato)
+          console.log("Extracted Data:", extractedData)
+          this.userCSInfo = extractedData;
+          this.getCS = true;
+          console.log("Seteo getCS:", this.getCS)
         }
-
       });
 
     } catch (error) {
@@ -117,6 +110,7 @@ export class MainComponent {
           const periodo = data.latestPeriod.periodo;
           const startDate = data.latestPeriod.startDate;
           const finishDate = data.latestPeriod.finishDate;
+          console.log("periodo#########" + year + periodo + startDate + finishDate)
         }
       })
     } catch (error) {
