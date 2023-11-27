@@ -88,9 +88,11 @@ export class generalController {
     return this.http.get<any>(`${this.apiUrl}/getGender/${ci}`)
   }
 
-  postPeriodo(year: Date, periodo: string, startDate: Date, finishDate: Date) {
-    console.log(year, periodo)
+  postPeriod(year: string, periodo: string, startDate: Date, finishDate: Date) {
     const body = { year, periodo, startDate, finishDate }
-    return this.http.post<any>(this.apiUrl + '/postPeriodo', body)
+    return this.http.post<any>(this.apiUrl + '/postPeriod', body)
+  }
+  getPeriod(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/getPeriod')
   }
 }

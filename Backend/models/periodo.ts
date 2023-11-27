@@ -2,7 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import db from "../db/config";
 
 class Periodo extends Model {
-    declare año: Date;
+    declare año: String;
     declare semestre: String;
     declare startDate: Date;
     declare finishDate: Date;
@@ -11,7 +11,7 @@ class Periodo extends Model {
 
 Periodo.init({
     year: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING,
         field: 'Año',
         primaryKey: true,
     },
@@ -31,7 +31,6 @@ Periodo.init({
     {
         sequelize: db,
         tableName: 'Periodos_Actualización',
-        timestamps: false,
         freezeTableName: true
     }
 

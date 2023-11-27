@@ -65,17 +65,33 @@ export const getGender = async (req: Request, res: Response) => {
     }
 }
 
-export const postPeriodo = async (req: Request, res: Response) => {
-    console.log("guardo periodo###################")
-
+export const postPeriod = async (req: Request, res: Response) => {
     const { body } = req;
 
     try {
         // Guarda en la tabla periodos_actualizacion     
-        console.log(body.year + body.periodo + body.startDate + body.finishDate + "body#######")
+        await Periodo.destroy({ where: {} });
         const form = await Periodo.create(body)
         res.json({ form });
 
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+};
+
+export const getPeriod = async (req: Request, res: Response) => {
+    try {
+        // Busca el último registro en la tabla periodos_actualizacion ordenado por fecha de creación descendente
+        const latestPeriod = await Periodo.findOne({
+            where: {}
+        });
+
+        if (latestPeriod) {
+            res.json({ latestPeriod });
+        } else {
+            res.status(404).json({ msg: 'No se encontraron periodos' });
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });

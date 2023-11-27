@@ -4,7 +4,9 @@ import { registerUser } from '../controllers/auth.controller';
 import { usersNotForm } from '../controllers/form.controller';
 import { checkDate, getGender, postGenderDate } from '../controllers/gender.controller';
 import { getHealthCard, postHealthCard } from '../controllers/healthCard.controller';
-import { postPeriodo } from '../controllers/gender.controller';
+import { postPeriod } from '../controllers/gender.controller';
+import { getPeriod } from '../controllers/gender.controller';
+
 
 const router = Router();
 
@@ -24,7 +26,8 @@ router.get('/getHealthCard/:ci', getHealthCard)
 
 router.get('/getGender/:ci', getGender)
 
-router.post('/postPeriodo', postPeriodo)
+router.post('/postPeriod', postPeriod)
 
+router.get('/getPeriod', getPeriod)
 
 export default router;

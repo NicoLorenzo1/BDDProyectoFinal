@@ -8,16 +8,11 @@ import { generalController } from '../services/generalController';
 })
 export class PeriodoComponent {
 
-  public constructor(private controller: generalController) {
-
-  }
+  public constructor(private controller: generalController) { }
 
   dropdownNames: string[] = ['Año:', 'Período:', 'Fecha Inicio:', 'Fecha Fin:'];
-  year: Date = new Date();
-  periodo: string = "";
-  startDate: Date = new Date();
-  finishDate: Date = new Date();
-
+  tempDropdownValues: string[] = ['', '', ''];
+  tempDateValues: string[] = ['', '', ''];
   options: string[][] = [
     ['2023', '2024', '2025'],
     ['1er Semestre', '2do Semestre'],
@@ -26,8 +21,15 @@ export class PeriodoComponent {
   ];
 
 
+
   postPeriodo() {
-    this.controller.postPeriodo(this.year, this.periodo, new Date(this.startDate), new Date(this.finishDate)).subscribe({
+    const year = this.tempDropdownValues[0];
+    const periodo = this.tempDropdownValues[1];
+    const startDate = new Date(this.tempDateValues[2]);
+    const finishDate = new Date(this.tempDateValues[3]);
+
+
+    this.controller.postPeriod(year, periodo, startDate, finishDate).subscribe({
       next: (response) => {
         alert("Periodo modificado correctamente")
       },
@@ -37,5 +39,6 @@ export class PeriodoComponent {
       }
     });
   }
+
 }
 

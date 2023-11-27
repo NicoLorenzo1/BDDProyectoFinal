@@ -33,7 +33,6 @@ export class RegistroComponent implements OnInit {
 
         this.formRegister.valueChanges.subscribe(() => {
             this.isFormValid = this.formRegister.valid;
-            console.log('isFormValid:', this.isFormValid);
         });
     }
 

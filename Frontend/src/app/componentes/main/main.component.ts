@@ -86,17 +86,6 @@ export class MainComponent {
         if (data.found) {
           this.userGenderInfo = data.data.date
           this.showAgendaInfo = true;
-
-          /*
-          const genderDate = data.date;
-          let dato = {
-            agendaDate:genderDate
-          }
-          let agendaData: any[] = [];
-          agendaData.push(dato)
-          console.log("creando agendaData: ",agendaData)
-          this.userGenderInfo = agendaData;
-          */
         }
         else {
           console.log("Agenda no encontrada")
@@ -111,25 +100,17 @@ export class MainComponent {
 
   async getPeriod() {
     try {
-      const data = await this.controlador.getPeriod().toPromise();
-      const year = data.year;
-      const periodo = data.periodo;
-      const startDate = data.startDate;
-      const finishDate = data.finishDate;
-      let dato = {
-        year: year,
-        periodo: periodo,
-        startDate: startDate,
-        finishDate: finishDate
-      }
-      console.log("Periodo encontrado: ", dato)
-      let extractedData: any[] = [];
-      extractedData.push(dato)
-
+      const data = await this.controlador.getPeriod().subscribe({
+        next: (data) => {
+          const year = data.latestPeriod.year;
+          const periodo = data.latestPeriod.periodo;
+          const startDate = data.latestPeriod.startDate;
+          const finishDate = data.latestPeriod.finishDate;
+        }
+      })
     } catch (error) {
       console.error(error);
-      // Handle errors if needed
     }
   }
-
 }
+

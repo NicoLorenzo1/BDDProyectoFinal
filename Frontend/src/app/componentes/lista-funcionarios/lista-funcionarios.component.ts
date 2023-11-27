@@ -21,11 +21,9 @@ export class ListaFuncionariosComponent {
   usersNotForm() {
     let aux: any[] = [];
 
-    //viene duplicado data 
     this.controlador.usersNotForm().subscribe(
       data => {
         this.resultados = data;
-        console.log("resultado: ", this.resultados)
         this.resultados.forEach(element => {
           element.forEach((user: any) => {
             const nombre = user.Nombre;
@@ -48,7 +46,6 @@ export class ListaFuncionariosComponent {
           });
 
           this.funcionarios = aux;
-          console.log(this.funcionarios);
         });
       },
       error => {
