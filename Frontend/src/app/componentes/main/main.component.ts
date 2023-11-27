@@ -22,6 +22,7 @@ export class MainComponent {
   userCSInfo: any[] = []
   getCS: boolean = false;
   getAgenda: boolean = false;
+  withinDate: boolean = false;
 
   async ngOnInit() {
     if (this.controlador.currentUserCi == 1010) {
@@ -35,11 +36,15 @@ export class MainComponent {
           console.log("Valor getCS2: ", this.getCS)
           this.showInfo = true;
         } else {
-          this.showOptions = true;
-          let agendaCheck = this.getGenderByCi(this.currentCI);
-          if (this.showAgendaInfo) {
-            console.log("Info Agenda guardada: ", this.userGenderInfo);
+          await this.getPeriod();
+          if (this.withinDate) {
+            this.showOptions = true;
+            let agendaCheck = this.getGenderByCi(this.currentCI);
+            if (this.showAgendaInfo) {
+              console.log("Info Agenda guardada: ", this.userGenderInfo);
+            }
           }
+
         }
       } catch (error) {
         console.error(error);
@@ -47,7 +52,7 @@ export class MainComponent {
       }
     }
   }
-  
+
   async getHealthCard(ci: number) {
     try {
       const data = await this.controlador.getHealthCardByCi(ci).toPromise();
@@ -72,7 +77,7 @@ export class MainComponent {
       console.error(error);
     }
   }
-  
+
 
   async getGenderByCi(ci: number) {
     this.controlador.getGenderByCi(ci).subscribe({
@@ -101,6 +106,30 @@ export class MainComponent {
         console.error(error);
       }
     });
+  }
+
+
+  async getPeriod() {
+    try {
+      const data = await this.controlador.getPeriod().toPromise();
+      const year = data.year;
+      const periodo = data.periodo;
+      const startDate = data.startDate;
+      const finishDate = data.finishDate;
+      let dato = {
+        year: year,
+        periodo: periodo,
+        startDate: startDate,
+        finishDate: finishDate
+      }
+      console.log("Periodo encontrado: ", dato)
+      let extractedData: any[] = [];
+      extractedData.push(dato)
+
+    } catch (error) {
+      console.error(error);
+      // Handle errors if needed
+    }
   }
 
 }

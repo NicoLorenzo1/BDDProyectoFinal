@@ -27,7 +27,6 @@ export class PeriodoComponent {
 
 
   postPeriodo() {
-    console.log("llego a metodo componente")
     this.controller.postPeriodo(this.year, this.periodo, new Date(this.startDate), new Date(this.finishDate)).subscribe({
       next: (response) => {
         alert("Periodo modificado correctamente")

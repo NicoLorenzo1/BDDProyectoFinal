@@ -65,8 +65,7 @@
             </div>
 
             <div class="mb-3">
-                <input type="text" formControlName="password" class="form-control form-control-lg"
-                    placeholder="Contraseña">
+                <input type="password" formControlName="password" class="form-control form-control-lg" placeholder="Contraseña">
                 <div class="text-danger"
                     *ngIf="formRegister.get('password')?.hasError('required') && formRegister.get('password')?.touched">
                     <span>Contraseña <strong> es obligatorio</strong></span>
@@ -74,7 +73,7 @@
             </div>
 
             <div class="mb-3">
-                <input type="text" formControlName="confirmPass" class="form-control form-control-lg"
+                <input type="password" formControlName="confirmPass" class="form-control form-control-lg"
                     placeholder="Confirmar contraseña">
                 <div class="text-danger"
                     *ngIf="formRegister.get('confirmPass')?.hasError('required') && formRegister.get('confirmPass')?.touched">
