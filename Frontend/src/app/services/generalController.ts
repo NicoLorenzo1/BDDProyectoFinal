@@ -79,7 +79,7 @@ export class generalController {
   }
 
   //devuelve los datos del carnet de salud
-  getHealthCardByCi(ci: number) {
+  getHealthCardByCi(ci: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/getHealthCard/${ci}`);
   }
 

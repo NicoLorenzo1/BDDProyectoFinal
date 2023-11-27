@@ -54,24 +54,29 @@ export class MainComponent {
 
   async getHealthCard(ci: number) {
     try {
-      const data = await this.controlador.getHealthCardByCi(ci).toPromise();
-      const proof = data.proof;
-      const issueDate = data.issueDate;
-      const expireDate = data.expireDate;
-      const Ci = data.ci;
-      let dato = {
-        proof: proof,
-        issueDate: issueDate,
-        expireDate: expireDate,
-        Ci: Ci
-      }
-      console.log("Cedula Ecnotrada: ", dato)
-      let extractedData: any[] = [];
-      extractedData.push(dato)
-      console.log("Extracted Data:", extractedData)
-      this.userCSInfo = extractedData;
-      this.getCS = true;
-      console.log("Seteo getCS:", this.getCS)
+      const data = await this.controlador.getHealthCardByCi(ci).subscribe({
+        next: (data) => {
+
+          const proof = data.proof;
+          const issueDate = data.issueDate;
+          const expireDate = data.expireDate;
+          const Ci = data.ci;
+          let dato = {
+            proof: proof,
+            issueDate: issueDate,
+            expireDate: expireDate,
+            Ci: Ci
+          }
+          console.log("Cedula Ecnotrada: ", dato)
+          let extractedData: any[] = [];
+          extractedData.push(dato)
+          console.log("Extracted Data:", extractedData)
+          this.userCSInfo = extractedData;
+          this.getCS = true;
+          console.log("Seteo getCS:", this.getCS)
+        }
+      });
+
     } catch (error) {
       console.error(error);
     }

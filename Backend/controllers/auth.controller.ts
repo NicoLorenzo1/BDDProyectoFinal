@@ -112,23 +112,3 @@ export const login = async (req: Request, res: Response) => {
         res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
     }
 }
-
-
-export const pruebaBack = async (req: Request, res: Response) => {
-
-    try {
-        const loginData = await Login.findAll({
-            where: {
-
-            }
-        });
-
-        res.json(loginData);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            msg: 'Internal Server Error',
-        });
-    }
-};
-
