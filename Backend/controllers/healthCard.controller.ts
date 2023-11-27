@@ -41,3 +41,13 @@ export const getHealthCard = async (req: Request, res: Response) => {
         res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
     }
 }
+
+export const usersNotForm = async (req: Request, res: Response) => {
+    try {
+        const users = await db.query(`SELECT Nombre, Apellido, CI, Teléfono FROM Funcionarios AS f WHERE NOT EXISTS (SELECT * FROM Carnet_Salud AS c WHERE c.ci = f.ci)`);
+        res.json(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: ErrorCodes.INTERNAL_SERVER_ERROR });
+    }
+};
