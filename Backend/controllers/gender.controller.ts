@@ -9,7 +9,6 @@ export const postGenderDate = async (req: Request, res: Response) => {
     const { body } = req;
     try {
         if (body !== null && 'date' in body && 'ci' in body) {
-            console.log("llego a if con " + body.ci + body.date)
             const gender = await Gender.build({
                 ci: body.ci,
                 date: new Date(body.date)
@@ -71,7 +70,7 @@ export const postPeriodo = async (req: Request, res: Response) => {
     const { body } = req;
 
     try {
-        // Guardar en la tabla periodos_actualizacion           
+        // Guarda en la tabla periodos_actualizacion           
         const form = await Periodo.create(body)
         res.json({ form });
 

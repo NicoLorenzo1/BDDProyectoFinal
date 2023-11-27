@@ -13,7 +13,7 @@ export class generalController {
   private readonly apiUrl = environment.apiUrl;
 
   logueado: boolean = false; //BOOLEANO QUE INDICA SI ESTAS LOGUEADO O NO CON UN USUARIO DE LA BDD
-  public currentUserCi: number = 54332615;
+  public currentUserCi: number = 0;
   public soyAdmin: boolean = false;
 
   funcionarios: Funcionario[] = [];

@@ -99,7 +99,6 @@ export class AgendaComponent implements OnInit {
         const year = this.currentDate.getFullYear();
         const month = this.currentDate.getMonth();
         const selectedDate = new Date(year, month, day);
-        console.log("isfechavalida####" + selectedDate)
         return selectedDate >= new Date(); // Retorna verdadero si la fecha es mayor o igual al día actual
     }
 

@@ -75,7 +75,6 @@ export class MainComponent {
       console.log("Seteo getCS:", this.getCS)
     } catch (error) {
       console.error(error);
-      // Handle errors if needed
     }
   }
 
