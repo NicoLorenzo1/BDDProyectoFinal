@@ -48,7 +48,6 @@ export class MainComponent {
         }
       } catch (error) {
         console.error(error);
-        // Handle errors if needed
       }
     }
   }
