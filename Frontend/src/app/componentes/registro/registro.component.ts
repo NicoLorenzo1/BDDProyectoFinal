@@ -21,8 +21,8 @@ export class RegistroComponent implements OnInit {
             name: ['', Validators.required],
             lastName: ['', Validators.required],
             ci: ['', Validators.required],
-            birthdate: [''],
-            phone: [''],
+            birthdate: ['', Validators.required],
+            phone: ['', Validators.required],
             adress: ['', Validators.required],
             email: ['', [Validators.required, Validators.pattern(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]],
             password: ['', [Validators.required, Validators.minLength(6)]],
@@ -66,10 +66,11 @@ export class RegistroComponent implements OnInit {
         this.controlador.Register(FORM.name, FORM.lastName, FORM.ci, FORM.birthdate, FORM.phone, FORM.adress, FORM.email, FORM.password).subscribe({
             next: (data) => {
                 // Manejar la respuesta aquí
-                alert('Register: ' + JSON.stringify(data));
+                alert("Usuario registrado!")
                 this.router.navigate(['/inicio']);
             },
             error: (error) => {
+                alert("Usuario ya registrado!")
                 console.error(error);
                 // Manejar errores si es necesario
             }
