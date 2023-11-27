@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <input type="text" formControlName="password" class="form-control form-control-lg"
+                    <input type="password" formControlName="password" class="form-control form-control-lg"
                         placeholder="Password">
                     <div class="text-danger"
                         *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">
