@@ -17,10 +17,11 @@ export class CsFormComponent /*implements OnInit*/ {
     isFormValid: boolean = false;
     titulo = 'CS Form';
     id: string | null;
+    currentCI:number = this.controlador.currentUserCi
 
     constructor(private fb: FormBuilder, private router: Router, private aRouter: ActivatedRoute, private controlador: generalController) {
         this.formCS = this.fb.group({
-            ci: ['', Validators.required],
+            ci: [{ value: this.currentCI, disabled: true }, Validators.required],
             fch_Emision: ['', [Validators.required, this.dateNotInFutureValidator]],
             fch_Vencimiento: ['', [Validators.required, this.dateNotInPastValidator]],
             comprobante: ['', [Validators.required, this.fileTypeValidator(['jpg', 'pdf', 'png'])]],
