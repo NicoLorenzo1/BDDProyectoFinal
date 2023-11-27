@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Funcionario } from 'src/app/clases/funcionario';
 import { generalController } from 'src/app/services/generalController';
 
 @Component({

@@ -43,7 +43,6 @@ export class InicioComponent {
       error: (error) => {
         alert("Datos incorrectos!!");
         console.error(error);
-        // Manejar errores si es necesario
       }
     });
   }

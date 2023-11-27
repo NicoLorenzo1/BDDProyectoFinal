@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Funcionario } from '../clases/funcionario';
 import { HttpClient } from '@angular/common/http';
 import { environment } from "../../environments/environment";
 import { Gender } from '../models/gender';
@@ -16,13 +15,7 @@ export class generalController {
   public currentUserCi: number = 0;
   public soyAdmin: boolean = false;
 
-  funcionarios: Funcionario[] = [];
-
   constructor(private http: HttpClient) { }
-
-  listarFuncionarios() {
-    return this.funcionarios;
-  }
 
   logeado() {
     this.logueado = true;

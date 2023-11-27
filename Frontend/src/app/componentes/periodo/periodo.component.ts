@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { generalController } from '../services/generalController';
+import { generalController } from '../../services/generalController';
 
 @Component({
   selector: 'app-periodo',

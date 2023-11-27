@@ -18,7 +18,7 @@ import { DynamicDatePipe } from './pipes/dynamic-date.pipe';
 import { MainComponent } from './componentes/main/main.component';
 import { ListaFuncionariosComponent } from './componentes/lista-funcionarios/lista-funcionarios.component';
 import { CsFormComponent } from './componentes/cs-form/cs-form.component';
-import { PeriodoComponent } from './periodo/periodo.component';
+import { PeriodoComponent } from './componentes/periodo/periodo.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
