@@ -11,8 +11,7 @@ services:
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=pass1234
       - MYSQL_DATABASE=proyectoBDD
-    depends_on:
-      - mysql
+    command: npm run dev
 
   frontend:
     build:
@@ -22,11 +21,17 @@ services:
       - "80:80"
     depends_on:
       - backend
+    command: ng serve --open
 
-  mysql:
+mysql:
     image: mysql:latest
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: rootpass1234
       MYSQL_DATABASE: proyectoBDD
+    depends_on:
+      - backend 
+    volumes:
+      - ./init_database.sql:/docker-entrypoint-initdb.d/init_database.sql
+
