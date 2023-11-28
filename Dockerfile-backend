@@ -6,6 +6,11 @@ WORKDIR /app
 
 # Copiar el código fuente del backend al contenedor
 COPY Backend /app
+COPY package*.json ./
+COPY .npmrc ./
+
+# Copia los archivos de la aplicación necesarios para la instalación de dependencias
+
 
 # Instalar las dependencias del backend
 RUN npm install
